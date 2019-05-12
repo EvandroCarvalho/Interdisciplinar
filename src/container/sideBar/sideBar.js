@@ -11,10 +11,10 @@ import ListItemText from '../../../node_modules/@material-ui/core/ListItemText';
 import Toolbar from '../../../node_modules/@material-ui/core/Toolbar';
 import Typography from '../../../node_modules/@material-ui/core/Typography';
 import { withStyles } from '../../../node_modules/@material-ui/core/styles';
-import { CustomerRegister } from '../../components/customerRegister/customerRegister';
-import { EmployeeRegister } from '../../components/employeeRegister/employeeRegister';
-import { ProductRegister } from '../../components/productRegister/productRegister';
-import { Sales } from '../../components/sales/sales';
+import { Customer } from '../../components/Customer/Customer';
+import { Employee } from '../../components/Employee/Employee';
+import { Product } from '../../components/Product/Product';
+import { Sales } from '../../components/Sales/Sales';
 import salesIcon from '../../assets/img/img.png';
 import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
@@ -75,11 +75,11 @@ class SideBar extends React.Component {
   getComponentByindex = (select) => {
       switch(select) {
           case 0:
-            return <EmployeeRegister/>
+            return <Employee/>
           case 1:
-            return <CustomerRegister/>
+            return <Customer/>
           case 2:
-            return <ProductRegister/>
+            return <Product/>
           case 3: 
             return <Sales/>
           default:

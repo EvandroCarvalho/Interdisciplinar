@@ -1,8 +1,7 @@
 import React, { Component } from '../../../node_modules/react'
-import './sales.css'
+import './Sales.css'
 import { findEmployeeById, findEmployeeByName } from '../../actions/sales'
 import Form from '../../../node_modules/react-bootstrap/Form'
-import Row from '../../../node_modules/react-bootstrap/Row'
 import Col from '../../../node_modules/react-bootstrap/Col'
 import Button from '../../../node_modules/react-bootstrap/Button'
 import InputMask from '../../../node_modules/react-input-mask'
@@ -121,7 +120,7 @@ export class Sales extends Component {
                         <div className="col-md-8" hidden={!findCustomer}>
                             <Form className="Form">
                                 <Form.Group>
-                                    <Form.Label>Nome do Cliente</Form.Label>
+                                    <Form.Label>Nome</Form.Label>
                                     <Form.Control 
                                         tyle="text"
                                         placeholder="Nome do Cliente"
@@ -159,7 +158,7 @@ export class Sales extends Component {
                                                 />
                                         </Form.Group>
                                     </Form.Row>
-                                    <Form.Label>Endereço com o numero</Form.Label>
+                                    <Form.Label>Endereço completo o numero</Form.Label>
                                     <Form.Control 
                                         tyle="text"
                                         placeholder="Endereço"
