@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { CustomerRegister } from '../CustomerRegister/CustomerRegister';
-import { EmployeeRegister } from '../EmployeeRegister/EmployeeRegister';
-import { ProductRegister } from '../ProductRegister/ProductRegister';
-import { Sales } from '../Sales/Sales';
+import React from '../../../node_modules/react';
+import PropTypes from '../../../node_modules/prop-types';
+import AppBar from '../../../node_modules/@material-ui/core/AppBar';
+import Divider from '../../../node_modules/@material-ui/core/Divider';
+import Drawer from '../../../node_modules/@material-ui/core/Drawer';
+import Hidden from '../../../node_modules/@material-ui/core/Hidden';
+import IconButton from '../../../node_modules/@material-ui/core/IconButton';
+import List from '../../../node_modules/@material-ui/core/List';
+import ListItem from '../../../node_modules/@material-ui/core/ListItem';
+import ListItemText from '../../../node_modules/@material-ui/core/ListItemText';
+import Toolbar from '../../../node_modules/@material-ui/core/Toolbar';
+import Typography from '../../../node_modules/@material-ui/core/Typography';
+import { withStyles } from '../../../node_modules/@material-ui/core/styles';
+import { CustomerRegister } from '../../components/customerRegister/customerRegister';
+import { EmployeeRegister } from '../../components/employeeRegister/employeeRegister';
+import { ProductRegister } from '../../components/productRegister/productRegister';
+import { Sales } from '../../components/sales/sales';
 import salesIcon from '../../assets/img/img.png';
 import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
@@ -55,13 +55,13 @@ const styles = theme => ({
   },
 });
 
-class ResponsiveDrawer extends React.Component {
+class SideBar extends React.Component {
   state = {
     mobileOpen: false,
     options: [
-        'Cadastro de Funcionários',
-        'Cadastro de Clientes',
-        'Cadastro de produtos',
+        'Funcionários',
+        'Clientes',
+        'Produtos',
         'Vendas'
     ],
     select: "",
@@ -160,7 +160,7 @@ class ResponsiveDrawer extends React.Component {
   }
 }
 
-ResponsiveDrawer.propTypes = {
+SideBar.propTypes = {
   classes: PropTypes.object.isRequired,
   // Injected by the documentation to work in an iframe.
   // You won't need it on your project.
@@ -168,4 +168,4 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+export default withStyles(styles, { withTheme: true })(SideBar);

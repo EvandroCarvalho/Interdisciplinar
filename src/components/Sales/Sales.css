@@ -1,6 +1,12 @@
-.container {
-    display: flex
+.Form {
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    padding: 20px;
 }
-.h1 {
-    color: blue
+
+.Button {
+    display: flex;
+    justify-content: space-around
+
 }

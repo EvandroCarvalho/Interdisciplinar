@@ -1,5 +1,5 @@
-const urlFindById = "https://salesmodule.herokuapp.com/employees/"
-const urlFindByName = "https://salesmodule.herokuapp.com/employees/findByName/"
+const urlFindById = "https://salesmodule.herokuapp.com/v1/employees/"
+const urlFindByName = "https://salesmodule.herokuapp.com/v1/employees/findByName/"
 export const findEmployeeByIdService = async (id) => {
     let response = '';
     await fetch(urlFindById + id)

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom'
-import ResponsiveDrawer from './components/ResponsiveDrawer/ResponsiveDrawer'
+import SideBar from './container/sideBar/sideBar';
 
 class App extends Component {
   render() {
     return (
         <div>
-          <ResponsiveDrawer/>
+          <SideBar/>
         </div>
     )
   }
