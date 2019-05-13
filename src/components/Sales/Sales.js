@@ -48,18 +48,18 @@ export class Sales extends Component {
     }
 
     getCustomerCPF = (cpf) => {
-        this.setState({customerCPF: cpf})
+        this.setState({ customerCPF: cpf })
     }
 
     searchCustomerByCPF = async (cpf) => {
         const response = await findCustomerByCPF(cpf)
-        this.setState({customer : response})
-        if(response.name) {
-            this.setState({findCustomer: true})
-            this.setState({customerNotFound: false})
-        }else {
-            this.setState({customerNotFound: true})
-            this.setState({findCustomer: false})
+        this.setState({ customer: response })
+        if (response.name) {
+            this.setState({ findCustomer: true })
+            this.setState({ customerNotFound: false })
+        } else {
+            this.setState({ customerNotFound: true })
+            this.setState({ findCustomer: false })
         }
     }
 
@@ -88,10 +88,10 @@ export class Sales extends Component {
                                     onClick={() => this.searchById(employeeId)}
                                 >
                                     Procurar
-                        </button>
+                                </button>
                             </div>
                         </div>
-                        <div className="input-group mb-3 col-md-6">
+                        <div className="input-group mb-3 col-md-3">
                             <input type="text" className="form-control" placeholder="Nome"
                                 value={employeeName}
                                 onChange={(e) => this.getName(e.target.value)}
@@ -114,18 +114,18 @@ export class Sales extends Component {
                     <div className="input-group mb-3 col-md-3">
                         <InputMask mask="999.999.999-99" placeholder="C.P.F. do cliente" className="form-control"
                             value={customerCPF}
-                            onChange={(e) => this.getCustomerCPF(e.target.value.replace(/[^0-9]+/g,''))}
+                            onChange={(e) => this.getCustomerCPF(e.target.value.replace(/[^0-9]+/g, ''))}
                             onKeyUp={(e) => e.keyCode == 13 ? this.searchCustomerByCPF(customerCPF) : ''}
-                            >
+                        >
                         </InputMask>
                         <div className="input-group-append">
                             <button className="btn btn-primary" type="button" id="searchByName"
-                             onClick={() => this.searchCustomerByCPF(customerCPF)}
+                                onClick={() => this.searchCustomerByCPF(customerCPF)}
                             >
                                 Consultar
                             </button>
                         </div>
-                        <div hidden={!customerNotFound}>
+                        <div hidden={!customerNotFound} className="CustomerNotFound">
                             <p className="text-danger">Cliente não encontrado</p>
                         </div>
                     </div>
@@ -134,7 +134,7 @@ export class Sales extends Component {
                             <Form className="Form">
                                 <Form.Group>
                                     <Form.Label>Nome</Form.Label>
-                                    <Form.Control 
+                                    <Form.Control
                                         tyle="text"
                                         placeholder="Nome do Cliente"
                                         size="md"
@@ -144,9 +144,9 @@ export class Sales extends Component {
                                     />
                                     <Form.Label hidden={true}>C.P.F</Form.Label>
                                     <Form.Control tyle="text"
-                                        placeholder="CPF do Cliente" 
-                                        id="cpf" hidden={true} 
-                                        disabled={findCustomer} 
+                                        placeholder="CPF do Cliente"
+                                        id="cpf" hidden={true}
+                                        disabled={findCustomer}
                                     />
                                     <Form.Row>
                                         <Form.Group as={Col} md="3">
@@ -168,11 +168,11 @@ export class Sales extends Component {
                                                 id="email"
                                                 disabled={findCustomer}
                                                 value={customer.email}
-                                                />
+                                            />
                                         </Form.Group>
                                     </Form.Row>
                                     <Form.Label>Endereço completo o numero</Form.Label>
-                                    <Form.Control 
+                                    <Form.Control
                                         tyle="text"
                                         placeholder="Endereço"
                                         id="address"

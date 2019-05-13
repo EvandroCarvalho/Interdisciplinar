@@ -8,5 +8,8 @@
 .Button {
     display: flex;
     justify-content: space-around
+}
 
+.CustomerNotFound {
+    padding: 30px
 }
