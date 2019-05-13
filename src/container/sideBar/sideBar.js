@@ -20,6 +20,9 @@ import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
 import employeeIcon from '../../assets/img/employee.png';
 import lineMenu from '../../assets/img/line-menu.png';
+import { Link } from 'react-router-dom'
+import Routes from '../../routes/routes';
+import './sideBar.css'
 
 const drawerWidth = 240;
 
@@ -59,10 +62,10 @@ class SideBar extends React.Component {
   state = {
     mobileOpen: false,
     options: [
-        'Funcionários',
-        'Clientes',
-        'Produtos',
-        'Vendas'
+        'funcionarios',
+        'clientes',
+        'produtos',
+        'vendas'
     ],
     select: "",
     icon: [employeeIcon, customerIcon, productIcon, salesIcon  ]
@@ -96,11 +99,11 @@ class SideBar extends React.Component {
         <Divider />
         <List>
           {this.state.options.map((text, index) => (
-            <ListItem button key={text}
-                onClick={() => this.setState({select: index})}
+             <ListItem button key={text}
+                 onClick={() => this.setState({select: index})}
             >
                 <img src={this.state.icon[index]} alt="Smiley face" height="42" width="42"/>
-                <ListItemText primary={text} />
+              <Link className={"link"} to={`/${text}`}>{text}</Link>
             </ListItem>
           ))}
         </List>
@@ -112,12 +115,12 @@ class SideBar extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <IconButton
-              color="colorSecondary"
+              color="secondary"
               aria-label="Open drawer"
               onClick={this.handleDrawerToggle}
               className={classes.menuButton}
             >
-            <img src={lineMenu} width="20" height="20"/>
+            <img src={lineMenu} width="20" height="20" alt="img"/>
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Sistema de Gestão de Vendas
@@ -153,7 +156,7 @@ class SideBar extends React.Component {
         </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {this.getComponentByindex(this.state.select)}
+          <Routes/>
         </main>
       </div>
     );

@@ -11,5 +11,14 @@
 }
 
 .CustomerNotFound {
-    padding: 30px
+    padding: 10px;
+    margin-left: 10px
+}
+
+.radioButtons {
+    display: flex;
+
+}
+#typeCustomer {
+    margin-right: 5px
 }

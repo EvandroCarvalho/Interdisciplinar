@@ -9,7 +9,6 @@ import { findCustomerByCPF } from '../../actions/customer'
 
 export class Sales extends Component {
 
-
     state = {
         employeeName: '',
         employeeId: '',
@@ -21,21 +20,31 @@ export class Sales extends Component {
             email: '',
             address: '',
         },
-        customerNotFound: false
+        cpfMask: '999.999.999-99',
+        cnpjMask: '99.999.999/9999-99',
+        inputRadioPlaceHolder: '',
+        isCPF: false,
+        isCNPJ: false,
+        customerNotFound: false,
+        employeeNotFound: false
     }
 
-    searchById = async (id) => {
+    searchEmployeeById = async (id) => {
         const { name: employeeName } = await findEmployeeById(id)
         if (employeeName) {
-            this.setState({ employeeName })
+            this.setState({ employeeName, employeeNotFound: false })
+        } else {
+            this.setState({employeeNotFound: true})
         }
 
     }
 
-    searchByName = async (name) => {
+    searchEmployeeByName = async (name) => {
         const { id: employeeId } = await findEmployeeByName(name)
         if (employeeId) {
-            this.setState({ employeeId })
+            this.setState({ employeeId, employeeNotFound: false })
+        } else {
+            this.setState({employeeNotFound: true})
         }
     }
 
@@ -55,12 +64,25 @@ export class Sales extends Component {
         const response = await findCustomerByCPF(cpf)
         this.setState({ customer: response })
         if (response.name) {
-            this.setState({ findCustomer: true })
-            this.setState({ customerNotFound: false })
+            this.setState({ findCustomer: true, customerNotFound: false })
         } else {
-            this.setState({ customerNotFound: true })
-            this.setState({ findCustomer: false })
+            this.setState({ customerNotFound: true, findCustomer: false })
         }
+    }
+
+    checkedCPF = (checked) => {
+        this.setState({
+            isCPF: true,
+            isCNPJ: false,
+            inputRadioPlaceHolder: 'C.P.F. do cliente'
+        })
+    }
+    checkedCNPJ = (checked) => {
+        this.setState({
+            isCPF: false,
+            isCNPJ: true,
+            inputRadioPlaceHolder: 'C.N.P.J. do cliente'
+        })
     }
 
     render() {
@@ -69,7 +91,13 @@ export class Sales extends Component {
             findCustomer,
             customerCPF,
             customer,
-            customerNotFound } = this.state
+            customerNotFound,
+            isCPF,
+            isCNPJ,
+            cnpjMask,
+            cpfMask,
+            inputRadioPlaceHolder,
+            employeeNotFound } = this.state
         return (
             <div>
                 <div className="searchEmployee">
@@ -81,13 +109,13 @@ export class Sales extends Component {
                             <input type="number" className="form-control" maxLength="4" placeholder="Id" min="1"
                                 value={employeeId}
                                 onChange={(e) => this.getId(e.target.value)}
-                                onKeyUp={(e) => e.keyCode == 13 ? this.searchById(employeeId) : ''}
+                                onKeyUp={(e) => e.keyCode === 13 ? this.searchEmployeeById(employeeId) : ''}
                             />
                             <div className="input-group-append">
                                 <button className="btn btn-primary" type="button" id="searchByid"
-                                    onClick={() => this.searchById(employeeId)}
+                                    onClick={() => this.searchEmployeeById(employeeId)}
                                 >
-                                    Procurar
+                                    Consultar
                                 </button>
                             </div>
                         </div>
@@ -95,38 +123,68 @@ export class Sales extends Component {
                             <input type="text" className="form-control" placeholder="Nome"
                                 value={employeeName}
                                 onChange={(e) => this.getName(e.target.value)}
-                                onKeyUp={(e) => e.keyCode == 13 ? this.searchByName(employeeName) : ''}
+                                onKeyUp={(e) => e.keyCode === 13 ? this.searchEmployeeByName(employeeName) : ''}
                             />
                             <div className="input-group-append">
                                 <button className="btn btn-primary" type="button" id="searchByName"
-                                    onClick={() => this.searchByName(employeeName)}
+                                    onClick={() => this.searchEmployeeByName(employeeName)}
                                 >
-                                    Procurar
+                                    Consultar
                             </button>
                             </div>
                         </div>
+                    </div>
+                    <div hidden={!employeeNotFound} className="CustomerNotFound">
+                            <p className="text-danger">Funcionário não cadastrado</p>
                     </div>
                 </div>
                 <div className="searchCustomer">
                     <div className="label col-md-12">
                         <h3>Consulta Dados do Cliente</h3>
                     </div>
-                    <div className="input-group mb-3 col-md-3">
-                        <InputMask mask="999.999.999-99" placeholder="C.P.F. do cliente" className="form-control"
-                            value={customerCPF}
-                            onChange={(e) => this.getCustomerCPF(e.target.value.replace(/[^0-9]+/g, ''))}
-                            onKeyUp={(e) => e.keyCode == 13 ? this.searchCustomerByCPF(customerCPF) : ''}
-                        >
-                        </InputMask>
-                        <div className="input-group-append">
-                            <button className="btn btn-primary" type="button" id="searchByName"
-                                onClick={() => this.searchCustomerByCPF(customerCPF)}
-                            >
-                                Consultar
-                            </button>
+                    <div>
+                        <div className="container col">
+                            <div>
+                                <input type="radio"
+                                    name="typeCustomer"
+                                    id="typeCustomer"
+                                    value={customerCPF}
+                                    onChange={(e) => this.checkedCPF(e.target.checked)}
+                                />
+                                <label>C.P.F</label>
+                            </div>
+                            <div>
+                                <input type="radio"
+                                    name="typeCustomer"
+                                    id="typeCustomer"
+                                    value={customerCPF}
+                                    onChange={(e) => this.checkedCNPJ(e.target.checked)}
+                                />
+                                <label>C.N.P.J</label>
+                            </div>
+                            <div className="container row col-md-6 input-group mb-3">
+                                <div>
+                                    <InputMask mask={isCPF ? cpfMask : cnpjMask }
+                                        disabled={!(isCNPJ || isCPF)}
+                                        className="form-control"
+                                        placeholder={inputRadioPlaceHolder} 
+                                        value={customerCPF}
+                                        onChange={(e) => this.getCustomerCPF(e.target.value.replace(/[^0-9]+/g, ''))}
+                                        onKeyUp={(e) => e.keyCode === 13 ? this.searchCustomerByCPF(customerCPF) : ''}
+                                    >
+                                    </InputMask>
+                                </div>
+                                <div className="input-group-append">
+                                    <button className="btn btn-primary" type="button" id="searchByName"
+                                        onClick={() => this.searchCustomerByCPF(customerCPF)}
+                                    >
+                                        Consultar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <div hidden={!customerNotFound} className="CustomerNotFound">
-                            <p className="text-danger">Cliente não encontrado</p>
+                            <p className="text-danger">Cliente não cadastrado</p>
                         </div>
                     </div>
                     <div>
@@ -140,7 +198,7 @@ export class Sales extends Component {
                                         size="md"
                                         id="name"
                                         disabled={findCustomer}
-                                        value={customer.name}
+                                        defaultValue={customer.name}
                                     />
                                     <Form.Label hidden={true}>C.P.F</Form.Label>
                                     <Form.Control tyle="text"
@@ -156,7 +214,7 @@ export class Sales extends Component {
                                                 placeholder="Telefone"
                                                 id="phone"
                                                 disabled={findCustomer}
-                                                value={customer.phone}
+                                                defaultValue={customer.phone}
                                             />
                                         </Form.Group>
                                         <Form.Group as={Col}>
@@ -167,7 +225,7 @@ export class Sales extends Component {
                                                 placeholder="E-mail"
                                                 id="email"
                                                 disabled={findCustomer}
-                                                value={customer.email}
+                                                defaultValue={customer.email}
                                             />
                                         </Form.Group>
                                     </Form.Row>
@@ -177,7 +235,7 @@ export class Sales extends Component {
                                         placeholder="Endereço"
                                         id="address"
                                         disabled={findCustomer}
-                                        value={customer.address}
+                                        defaultValue={customer.address}
                                     />
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
