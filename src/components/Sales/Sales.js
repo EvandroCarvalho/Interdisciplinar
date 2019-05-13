@@ -1,5 +1,5 @@
 import React, { Component } from '../../../node_modules/react'
-import './sales.css'
+import './Sales.css'
 import { findEmployeeById, findEmployeeByName } from '../../actions/sales'
 import Form from '../../../node_modules/react-bootstrap/Form'
 import Col from '../../../node_modules/react-bootstrap/Col'

@@ -4,7 +4,7 @@ import { Switch, Route} from 'react-router-dom'
 import { Customer } from '../components/Customer/Customer'
 import { Employee } from '../components/Employee/Employee';
 import { Product } from '../components/Product/Product';
-import { Sales } from '../components/sales/sales';
+import { Sales } from '../components/Sales/Sales';
 import Welcome from '../components/Welcome';
 
 export default class Routes extends Component {

@@ -1,8 +1,13 @@
 import React, {Component} from 'react'
+import './Customer.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import Table from 'react-table'
+import Edit from '../../assets/img/edit.png';
+import Delete from '../../assets/img/delete.png';
+import 'react-table/react-table.css'
 
 export class Customer extends Component {
 
@@ -21,17 +26,78 @@ export class Customer extends Component {
     };
 
     add = () => {
-        this.setState({modalAddIsOpen: false})
+        this.setState({modalAddIsOpen: false});
     };
+
+    formatCell = (row) => {
+        return (<div style={{ padding: "6px" }}>{row}</div>)
+    }
+
+    formatCellActions = (row) => {
+        return (
+            <div>
+                <button className="btn" title="Editar" onClick={() => console.log(row)}>
+                    <img src={Edit} alt="img" height="18" width="18" />
+                </button>
+                <button className="btn" title="Excluir" onClick={() => console.log(row)}>
+                    <img src={Delete} alt="img" height="18" width="18" />
+                </button>
+            </div>
+        );
+    }
+
+    columns = [{
+        Header: "Nome",
+        accessor: "name",
+        Cell: row => (this.formatCell(row.value))
+    }, {
+        Header: "C.P.F",
+        accessor: "cpf",
+        Cell: row => (this.formatCell(row.value))
+    }, {
+        Header: "Telefone",
+        accessor: "phone",
+        Cell: row => (this.formatCell(row.value))
+    }, {
+        Header: "E-mail",
+        accessor: "email",
+        Cell: row => (this.formatCell(row.value))
+    }, {
+        Header: "Endereço",
+        accessor: "address",
+        Cell: row => (this.formatCell(row.value))
+    }, {
+        Header: "Ações",
+        Cell: row => (this.formatCellActions(row.original)),
+        width: 100
+    }];
+
+    data = [{
+        name: "Natália",
+        cpf: "063.076.736-05",
+        phone: "(34) 99191-1201",
+        email: "nataliapmartins10@hotmail.com",
+        address: "Rua Rezende, n.242, ap.202, centro"
+    }];
 
     render() {
         return (
             <div>
                 <h3>Clientes</h3>
                 
-                <Button variant="primary" type="button" onClick={() => this.openModalAdd()}>
-                    Novo
-                </Button>
+                <div className="row">
+                    <div className="col-12">
+                        <Button style={{float: "right"}} variant="primary" type="button" onClick={() => this.openModalAdd()}>
+                            Novo
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="container">
+                    <div className="Table">
+                        <Table className="-highlight" data={this.data} columns={this.columns} pageSize={10}/>
+                    </div>
+                </div>
 
                 <Modal show={this.state.modalAddIsOpen} onHide={this.closeModalAdd} >
                     <Modal.Dialog>
