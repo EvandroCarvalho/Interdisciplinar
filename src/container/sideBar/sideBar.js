@@ -94,17 +94,17 @@ class SideBar extends React.Component {
     const { classes, theme } = this.props;
 
     const drawer = (
-      <div>
+      <div className="link">
         <div className={classes.toolbar} />
         <Divider />
         <List>
           {this.state.options.map((text, index) => (
-             <ListItem button key={text}
-                 onClick={() => this.setState({select: index})}
-            >
-                <img src={this.state.icon[index]} alt="Smiley face" height="42" width="42"/>
-              <Link className={"link"} to={`/${text}`}>{text}</Link>
-            </ListItem>
+            <Link className="link" to={`/${text}`} key={index}>
+              <ListItem button key={text}>
+                  <img src={this.state.icon[index]} alt="img" height="42" width="42"/>
+                  <ListItemText>{text.charAt(0).toUpperCase() + text.slice(1)}</ListItemText>
+              </ListItem>
+            </Link>
           ))}
         </List>
       </div>
@@ -122,7 +122,7 @@ class SideBar extends React.Component {
             >
             <img src={lineMenu} width="20" height="20" alt="img"/>
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography variant="h5" color="inherit" noWrap>
               Sistema de Gestão de Vendas
             </Typography>
           </Toolbar>

@@ -119,7 +119,7 @@ export class Sales extends Component {
                                 </button>
                             </div>
                         </div>
-                        <div className="input-group mb-3 col-md-3">
+                        <div className="input-group mb-3 col-md-6">
                             <input type="text" className="form-control" placeholder="Nome"
                                 value={employeeName}
                                 onChange={(e) => this.getName(e.target.value)}
@@ -195,7 +195,7 @@ export class Sales extends Component {
                                     <Form.Control
                                         tyle="text"
                                         placeholder="Nome do Cliente"
-                                        size="md"
+                                        size="lg"
                                         id="name"
                                         disabled={findCustomer}
                                         defaultValue={customer.name}

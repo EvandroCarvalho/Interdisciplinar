@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { Switch, Route} from 'react-router-dom'
 import { Customer } from '../components/Customer/Customer'
 import { Employee } from '../components/Employee/Employee';
 import { Product } from '../components/Product/Product';
