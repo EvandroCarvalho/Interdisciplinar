@@ -21,7 +21,8 @@ export class Sales extends Component {
             phone: '',
             email: '',
             address: '',
-        }
+        },
+        customerNotFound: false
     }
 
     searchById = async (id) => {
@@ -54,13 +55,22 @@ export class Sales extends Component {
     searchCustomerByCPF = async (cpf) => {
         const response = await findCustomerByCPF(cpf)
         this.setState({customer : response})
-        if(response) {
+        if(response.name) {
             this.setState({findCustomer: true})
+            this.setState({customerNotFound: false})
+        }else {
+            this.setState({customerNotFound: true})
+            this.setState({findCustomer: false})
         }
     }
 
     render() {
-        const { employeeId, employeeName, findCustomer, customerCPF, customer } = this.state
+        const { employeeId,
+            employeeName,
+            findCustomer,
+            customerCPF,
+            customer,
+            customerNotFound } = this.state
         return (
             <div>
                 <div className="searchEmployee">
@@ -116,6 +126,9 @@ export class Sales extends Component {
                                 Consultar
                             </button>
                         </div>
+                        <div hidden={!customerNotFound}>
+                            <p className="text-danger">Cliente não encontrado</p>
+                        </div>
                     </div>
                     <div>
                         <div className="col-md-8" hidden={!findCustomer}>
@@ -127,14 +140,14 @@ export class Sales extends Component {
                                         placeholder="Nome do Cliente"
                                         size="md"
                                         id="name"
-                                        disabled={!findCustomer}
+                                        disabled={findCustomer}
                                         value={customer.name}
                                     />
                                     <Form.Label hidden={true}>C.P.F</Form.Label>
                                     <Form.Control tyle="text"
                                         placeholder="CPF do Cliente" 
                                         id="cpf" hidden={true} 
-                                        disabled={!findCustomer} 
+                                        disabled={findCustomer} 
                                     />
                                     <Form.Row>
                                         <Form.Group as={Col} md="3">
@@ -143,7 +156,7 @@ export class Sales extends Component {
                                                 tyle="text"
                                                 placeholder="Telefone"
                                                 id="phone"
-                                                disabled={!findCustomer}
+                                                disabled={findCustomer}
                                                 value={customer.phone}
                                             />
                                         </Form.Group>
@@ -154,7 +167,7 @@ export class Sales extends Component {
                                                 md="4"
                                                 placeholder="E-mail"
                                                 id="email"
-                                                disabled={!findCustomer}
+                                                disabled={findCustomer}
                                                 value={customer.email}
                                                 />
                                         </Form.Group>
@@ -164,18 +177,13 @@ export class Sales extends Component {
                                         tyle="text"
                                         placeholder="Endereço"
                                         id="address"
-                                        disabled={!findCustomer}
+                                        disabled={findCustomer}
                                         value={customer.address}
                                     />
                                 </Form.Group>
-                                <div className="Button">
-                                    <Button variant="primary" type="submit">
-                                        Confirmar
-                                    </Button>
-                                    <Button variant="success" type="submit">
-                                        Alterar
-                                    </Button>
-                                </div>
+                                <Button variant="primary" type="submit">
+                                    Confirmar
+                                </Button>
                             </Form>
                         </div>
                     </div>
