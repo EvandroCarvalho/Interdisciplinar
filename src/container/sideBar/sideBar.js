@@ -14,7 +14,7 @@ import { withStyles } from '../../../node_modules/@material-ui/core/styles';
 import { Customer } from '../../components/Customer/Customer';
 import { Employee } from '../../components/Employee/Employee';
 import { Product } from '../../components/Product/Product';
-import { Sales } from '../../components/Sales/Sales';
+import { Sales } from '../../components/sales/sales';
 import salesIcon from '../../assets/img/img.png';
 import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
