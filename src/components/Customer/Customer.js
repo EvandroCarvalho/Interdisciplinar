@@ -1,33 +1,85 @@
 import React, {Component} from 'react'
+import 'react-table/react-table.css'
 import './Customer.css'
+import { CustomerRegister } from './CustomerRegister'
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-table'
 import Edit from '../../assets/img/edit.png';
 import Delete from '../../assets/img/delete.png';
-import 'react-table/react-table.css'
+import {
+    findCustomer,
+    saveCustomer,
+    updateCustomer,
+    deleteCustomer
+} from '../../actions/customer'
 
 export class Customer extends Component {
 
 
     state = {
-        modalAddIsOpen: false,
-        modalRemoveIsOpen: false
+        data: [],
+        modalAddOrEditIsOpen: false,
+        modalRemoveIsOpen: false,
+        customer: {
+            name: '',
+            cpf: '',
+            phone: '',
+            email: '',
+            address: ''
+        }
     };
 
-    openModalAdd = () => {
-        this.setState({modalAddIsOpen: true});
+    componentDidMount() {
+        this.searchCustomer();
     };
 
-    closeModalAdd = () => {
-        this.setState({modalAddIsOpen: false});
+    searchCustomer = async () => {
+        const response = await findCustomer();
+        this.setState({data: response.content})
+    }
+
+    openModalAddOrEdit = (row) => {
+        if (row) {
+            this.setState({customer: row});
+        } else {
+            this.setState({customer: {
+                name: '', 
+                cpf: '',
+                phone: '',
+                email: '',
+                address: ''
+            }});
+        }
+        this.setState({modalAddOrEditIsOpen: true});
     };
 
-    add = () => {
-        this.setState({modalAddIsOpen: false});
+    closeModalAddOrEdit = () => {
+        this.setState({modalAddOrEditIsOpen: false});
     };
+
+    save = (payload) => {
+        if (payload.id) {
+            // save(payload)
+        } else {
+            // update(payload)
+        }
+        // searchCustomer  
+        this.closeModalAddOrEdit();
+    };
+
+    openModalDelete = (row) => {
+        this.setState({modalDeleteIsOpen: true, customer: row});
+    };
+
+    closeModalDelete = () => {
+        this.setState({modalDeleteIsOpen: false});
+    };
+
+    delete = () => {
+        // delete(this.state.customer.id)
+        this.closeModalDelete();
+    }
 
     formatCell = (row) => {
         return (<div style={{ padding: "6px" }}>{row}</div>)
@@ -36,10 +88,10 @@ export class Customer extends Component {
     formatCellActions = (row) => {
         return (
             <div>
-                <button className="btn" title="Editar" onClick={() => console.log(row)}>
+                <button className="btn" title="Editar" onClick={() => this.openModalAddOrEdit(row)}>
                     <img src={Edit} alt="img" height="18" width="18" />
                 </button>
-                <button className="btn" title="Excluir" onClick={() => console.log(row)}>
+                <button className="btn" title="Excluir" onClick={() => this.openModalDelete(row)}>
                     <img src={Delete} alt="img" height="18" width="18" />
                 </button>
             </div>
@@ -72,70 +124,76 @@ export class Customer extends Component {
         width: 100
     }];
 
-    data = [{
-        name: "Natália",
-        cpf: "063.076.736-05",
-        phone: "(34) 99191-1201",
-        email: "nataliapmartins10@hotmail.com",
-        address: "Rua Rezende, n.242, ap.202, centro"
-    }];
-
     render() {
+        const {
+            data,
+            modalAddOrEditIsOpen,
+            modalDeleteIsOpen,
+            customer
+        } = this.state;
+        
         return (
             <div>
                 <h3>Clientes</h3>
                 
                 <div className="row">
                     <div className="col-12">
-                        <Button style={{float: "right"}} variant="primary" type="button" onClick={() => this.openModalAdd()}>
-                            Novo
-                        </Button>
+                        <Button
+                            style={{float: "right"}}
+                            variant="primary"
+                            type="button"
+                            onClick={() => this.openModalAddOrEdit()}
+                        >Novo</Button>
                     </div>
                 </div>
 
                 <div className="container">
                     <div className="Table">
-                        <Table className="-highlight" data={this.data} columns={this.columns} pageSize={10}/>
+                        <Table
+                            className="-highlight"
+                            data={data}
+                            columns={this.columns}
+                            pageSize={10}
+                        />
                     </div>
                 </div>
 
-                <Modal show={this.state.modalAddIsOpen} onHide={this.closeModalAdd} >
+                <Modal
+                    show={modalAddOrEditIsOpen}
+                    onHide={this.closeModalAddOrEdit}
+                >
+                    <CustomerRegister
+                        close={this.closeModalAddOrEdit}
+                        save={this.save}
+                        customer={customer} 
+                    />
+                </Modal>
+
+                <Modal
+                    show={modalDeleteIsOpen}
+                    onHide={this.closeModalDelete}
+                >
                     <Modal.Dialog>
                         <Modal.Header closeButton>
-                            <Modal.Title>Cadastro de clientes</Modal.Title>
+                            <Modal.Title>Excluir cliente</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body>
-                            <div className="col-md-12">
-                                <Form className="Form">
-                                    <Form.Group controlId="formBasicEmail">
-                                        <Form.Label>Nome</Form.Label>
-                                        <Form.Control tyle="text" placeholder="Nome do Cliente" size="md" id="name"/>
-                                        <Form.Label>C.P.F</Form.Label>
-                                        <Form.Control tyle="text" placeholder="CPF do Cliente" id="cpf"  />
-                                        <Form.Row>
-                                            <Form.Group as={Col} md="3" controlId="validationFormikPhone">
-                                                <Form.Label>Telefone</Form.Label>
-                                                <Form.Control tyle="text" placeholder="Telefone" id="phone"  />
-                                            </Form.Group>
-                                            <Form.Group as={Col} controlId="validationFormikPassword">
-                                                <Form.Label>Email </Form.Label>
-                                                <Form.Control type="email" md="4" placeholder="E-mail" id="email" />
-                                            </Form.Group>
-                                        </Form.Row>
-                                        <Form.Label>Endereço completo</Form.Label>
-                                        <Form.Control tyle="text" placeholder="Endereço" id="address"  />
-                                    </Form.Group>
-                                </Form>
+                            <div className="container">
+                                <p> Deseja realmente excluir este cliente 
+                                    <br /> 
+                                    Esta ação não poderá ser desfeita! 
+                                </p>
                             </div>
                         </Modal.Body>
 
                         <Modal.Footer>
-                            <Button variant="secondary" onClick={this.closeModalAdd}>Cancelar</Button>
-                            <Button variant="primary" type="submit" onClick={this.add}>Salvar</Button>
+                            <Button variant="secondary" onClick={this.closeModalDelete}>Cancelar</Button>
+                            <Button variant="primary" type="submit" onClick={this.delete}>Confirmar</Button>
                         </Modal.Footer>
                     </Modal.Dialog>
                 </Modal>
+
             </div>
         )
     }
