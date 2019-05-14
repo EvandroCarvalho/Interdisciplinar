@@ -5,13 +5,13 @@ import { CustomerRegister } from './CustomerRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-table'
-import Edit from '../../assets/img/edit.png';
-import Delete from '../../assets/img/delete.png';
+import Edit from '../../assets/img/edit.png'
+import Delete from '../../assets/img/delete.png'
 import {
-    findCustomer,
-    saveCustomer,
-    updateCustomer,
-    deleteCustomer
+    findCustomer
+    // saveCustomer,
+    // updateCustomer,
+    // deleteCustomer
 } from '../../actions/customer'
 
 export class Customer extends Component {
@@ -28,20 +28,20 @@ export class Customer extends Component {
             email: '',
             address: ''
         }
-    };
+    }
 
     componentDidMount() {
-        this.searchCustomer();
-    };
+        this.searchCustomer()
+    }
 
     searchCustomer = async () => {
-        const response = await findCustomer();
+        const response = await findCustomer()
         this.setState({data: response.content})
     }
 
     openModalAddOrEdit = (row) => {
         if (row) {
-            this.setState({customer: row});
+            this.setState({customer: row})
         } else {
             this.setState({customer: {
                 name: '', 
@@ -49,14 +49,14 @@ export class Customer extends Component {
                 phone: '',
                 email: '',
                 address: ''
-            }});
+            }})
         }
-        this.setState({modalAddOrEditIsOpen: true});
-    };
+        this.setState({modalAddOrEditIsOpen: true})
+    }
 
     closeModalAddOrEdit = () => {
-        this.setState({modalAddOrEditIsOpen: false});
-    };
+        this.setState({modalAddOrEditIsOpen: false})
+    }
 
     save = (payload) => {
         if (payload.id) {
@@ -65,20 +65,20 @@ export class Customer extends Component {
             // update(payload)
         }
         // searchCustomer  
-        this.closeModalAddOrEdit();
-    };
+        this.closeModalAddOrEdit()
+    }
 
     openModalDelete = (row) => {
-        this.setState({modalDeleteIsOpen: true, customer: row});
-    };
+        this.setState({modalDeleteIsOpen: true, customer: row})
+    }
 
     closeModalDelete = () => {
-        this.setState({modalDeleteIsOpen: false});
-    };
+        this.setState({modalDeleteIsOpen: false})
+    }
 
     delete = () => {
         // delete(this.state.customer.id)
-        this.closeModalDelete();
+        this.closeModalDelete()
     }
 
     formatCell = (row) => {
@@ -95,7 +95,7 @@ export class Customer extends Component {
                     <img src={Delete} alt="img" height="18" width="18" />
                 </button>
             </div>
-        );
+        )
     }
 
     columns = [{
@@ -122,7 +122,7 @@ export class Customer extends Component {
         Header: "Ações",
         Cell: row => (this.formatCellActions(row.original)),
         width: 100
-    }];
+    }]
 
     render() {
         const {
@@ -130,7 +130,7 @@ export class Customer extends Component {
             modalAddOrEditIsOpen,
             modalDeleteIsOpen,
             customer
-        } = this.state;
+        } = this.state
         
         return (
             <div>

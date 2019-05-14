@@ -25,6 +25,6 @@ export const updateCustomerService = async (payload) => {
     
 }
 
-export const deleteCustomerService = async (payload) => {
-    
+export const deleteCustomerService = async (id) => {
+
 }

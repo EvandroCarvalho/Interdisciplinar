@@ -8,38 +8,38 @@ export class CustomerRegister extends Component {
 
 
     handleSubmit = (e) => {
-        const { save } = this.props;
-        e.preventDefault(); 
+        const { save } = this.props
+        e.preventDefault() 
 
-        const elements = [...e.target.elements];
+        const elements = [...e.target.elements]
         const payload = elements.reduce((result, current) => {
             if (!current.value || (current.type === "radio" && !current.checked)) {
-            return result;
+            return result
             }
-            return this.getElementNameAndValue(current, result);
-        }, {});
+            return this.getElementNameAndValue(current, result)
+        }, {})
 
-        save(payload);
-    };
+        save(payload)
+    }
 
     getElementNameAndValue = (element, returnObject) => {
-        let payloadResult = { ...returnObject };
-        let elementName = element.name.length ? element.name : element.id;
+        let payloadResult = { ...returnObject }
+        let elementName = element.name.length ? element.name : element.id
         if (elementName && elementName.length) {
           if (elementName.includes(".")) {
-            let nameSplit = elementName.split(".");
+            let nameSplit = elementName.split(".")
             payloadResult[nameSplit[0]] = {
               [nameSplit[1]]: element.value
-            };
+            }
           } else {
-            payloadResult[elementName] = element.value;
+            payloadResult[elementName] = element.value
           }
         }
-        return payloadResult;
-    };
+        return payloadResult
+    }
 
     render() {
-        const { customer, close } = this.props;
+        const { customer, close } = this.props
         
         return (
             <Modal.Dialog>

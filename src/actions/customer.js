@@ -20,13 +20,13 @@ export const findCustomer = async () => {
 }
 
 export const saveCustomer = async (payload) => {
-    
+    await saveCustomerService(payload)
 }
 
 export const updateCustomer = async (payload) => {
-    
+    await updateCustomerService(payload)
 }
 
-export const deleteCustomer = async (payload) => {
-    
+export const deleteCustomer = async (id) => {
+    await deleteCustomerService(id)
 }
