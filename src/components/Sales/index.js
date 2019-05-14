@@ -1,10 +1,10 @@
-import React, { Component } from '../../../node_modules/react'
-import './sales.css'
+import React, { Component } from 'react'
+import './styles.css'
 import { findEmployeeById, findEmployeeByName } from '../../actions/sales'
-import Form from '../../../node_modules/react-bootstrap/Form'
-import Col from '../../../node_modules/react-bootstrap/Col'
-import Button from '../../../node_modules/react-bootstrap/Button'
-import InputMask from '../../../node_modules/react-input-mask'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import InputMask from 'react-input-mask'
 import { findCustomerByCPF } from '../../actions/customer'
 import { Link } from 'react-router-dom';
 

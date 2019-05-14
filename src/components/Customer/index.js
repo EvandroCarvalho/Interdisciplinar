@@ -27,8 +27,7 @@ export class Customer extends Component {
     render() {
         return (
             <div>
-                <h3>Clientes</h3>
-                
+                <h3>Clientes</h3>     
                 <Button variant="primary" type="button" onClick={() => this.openModalAdd()}>
                     Novo
                 </Button>
