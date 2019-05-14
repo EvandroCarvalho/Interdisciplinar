@@ -154,7 +154,13 @@ export default class Customer extends Component {
                             data={data}
                             columns={this.columns}
                             pageSize={10}
-                        />
+                            previousText="Anterior"
+                            nextText="Próxima"
+                            noDataText="Não foram encontrados resultados"
+                            pageText="Página"
+                            ofText="de"
+                            rowsText="linhas"
+                    />
                     </div>
                 </div>
 
