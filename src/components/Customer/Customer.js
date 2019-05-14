@@ -180,7 +180,7 @@ export class Customer extends Component {
 
                         <Modal.Body>
                             <div className="container">
-                                <p> Deseja realmente excluir este cliente 
+                                <p> Deseja realmente excluir este cliente? 
                                     <br /> 
                                     Esta ação não poderá ser desfeita! 
                                 </p>
