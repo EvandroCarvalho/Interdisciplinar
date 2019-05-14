@@ -11,10 +11,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import Customer from '../../components/Customer';
-import Employee from '../../components/Employee';
-import Product from '../../components/Product';
-import Sales from '../../components/Sales';
+import Customer from '../../components/customer';
+import Employee from '../../components/employee';
+import Product from '../../components/product';
+import Sales from '../../components/sales';
 import salesIcon from '../../assets/img/img.png';
 import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
@@ -171,4 +171,4 @@ SideBar.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(SideBar);
+export default withStyles(styles, { withTheme: true })(SideBar)
