@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './Customer.css'
+import './styles.css'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
@@ -9,7 +9,7 @@ import Edit from '../../assets/img/edit.png';
 import Delete from '../../assets/img/delete.png';
 import 'react-table/react-table.css'
 
-export class Customer extends Component {
+export default class Customer extends Component {
 
 
     state = {
