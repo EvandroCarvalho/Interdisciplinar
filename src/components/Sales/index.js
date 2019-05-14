@@ -8,7 +8,7 @@ import InputMask from 'react-input-mask'
 import { findCustomerByCPF } from '../../actions/customer'
 import { Link } from 'react-router-dom';
 
-export class Sales extends Component {
+export default class Sales extends Component {
 
     state = {
         employeeName: '',

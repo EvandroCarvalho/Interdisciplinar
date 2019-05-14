@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-export class Product extends Component {
+export default class Product extends Component {
 
 
     state = {

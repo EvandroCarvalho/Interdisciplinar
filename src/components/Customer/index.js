@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
-export class Customer extends Component {
+export default class Customer extends Component {
 
 
     state = {
