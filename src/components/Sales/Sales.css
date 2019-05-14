@@ -22,3 +22,9 @@
 #typeCustomer {
     margin-right: 5px
 }
+
+.search {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}

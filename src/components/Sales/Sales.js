@@ -6,6 +6,7 @@ import Col from '../../../node_modules/react-bootstrap/Col'
 import Button from '../../../node_modules/react-bootstrap/Button'
 import InputMask from '../../../node_modules/react-input-mask'
 import { findCustomerByCPF } from '../../actions/customer'
+import { Link } from 'react-router-dom';
 
 export class Sales extends Component {
 
@@ -174,7 +175,7 @@ export class Sales extends Component {
                                     >
                                     </InputMask>
                                 </div>
-                                <div className="input-group-append">
+                                <div className="input-group-append" disabled={true}>
                                     <button className="btn btn-primary" type="button" id="searchByName"
                                         onClick={() => this.searchCustomerByCPF(customerCPF)}
                                     >
@@ -238,9 +239,13 @@ export class Sales extends Component {
                                         defaultValue={customer.address}
                                     />
                                 </Form.Group>
-                                <Button variant="primary" type="submit">
-                                    Confirmar
-                                </Button>
+                                <div>
+                                        <Link to="vendas/produtos">
+                                            <Button variant="primary" type="submit">
+                                                Confirmar
+                                            </Button>
+                                        </Link>
+                                </div>
                             </Form>
                         </div>
                     </div>
