@@ -15,7 +15,6 @@ export const findCustomerByCPF = async (cpf) => {
 
 export const findCustomer = async () => {
     const response = await findCustomerService()
-    console.log('findCustomer', response)
     return response;
 }
 

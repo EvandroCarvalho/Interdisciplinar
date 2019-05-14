@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import 'react-table/react-table.css'
-import './Customer.css'
+import './styles.css'
 import { CustomerRegister } from './CustomerRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -14,8 +14,7 @@ import {
     // deleteCustomer
 } from '../../actions/customer'
 
-export class Customer extends Component {
-
+export default class Customer extends Component {
 
     state = {
         data: [],

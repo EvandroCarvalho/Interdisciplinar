@@ -1,13 +1,14 @@
-import React, { Component } from '../../../node_modules/react'
-import './Sales.css'
+import React, { Component } from 'react'
+import './styles.css'
 import { findEmployeeById, findEmployeeByName } from '../../actions/sales'
-import Form from '../../../node_modules/react-bootstrap/Form'
-import Col from '../../../node_modules/react-bootstrap/Col'
-import Button from '../../../node_modules/react-bootstrap/Button'
-import InputMask from '../../../node_modules/react-input-mask'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import InputMask from 'react-input-mask'
 import { findCustomerByCPF } from '../../actions/customer'
+import { Link } from 'react-router-dom';
 
-export class Sales extends Component {
+export default class Sales extends Component {
 
     state = {
         employeeName: '',
@@ -174,7 +175,7 @@ export class Sales extends Component {
                                     >
                                     </InputMask>
                                 </div>
-                                <div className="input-group-append">
+                                <div className="input-group-append" disabled={true}>
                                     <button className="btn btn-primary" type="button" id="searchByName"
                                         onClick={() => this.searchCustomerByCPF(customerCPF)}
                                     >
@@ -238,9 +239,13 @@ export class Sales extends Component {
                                         defaultValue={customer.address}
                                     />
                                 </Form.Group>
-                                <Button variant="primary" type="submit">
-                                    Confirmar
-                                </Button>
+                                <div>
+                                        <Link to="vendas/produtos">
+                                            <Button variant="primary" type="submit">
+                                                Confirmar
+                                            </Button>
+                                        </Link>
+                                </div>
                             </Form>
                         </div>
                     </div>

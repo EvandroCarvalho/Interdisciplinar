@@ -1,20 +1,20 @@
-import React from '../../../node_modules/react';
-import PropTypes from '../../../node_modules/prop-types';
-import AppBar from '../../../node_modules/@material-ui/core/AppBar';
-import Divider from '../../../node_modules/@material-ui/core/Divider';
-import Drawer from '../../../node_modules/@material-ui/core/Drawer';
-import Hidden from '../../../node_modules/@material-ui/core/Hidden';
-import IconButton from '../../../node_modules/@material-ui/core/IconButton';
-import List from '../../../node_modules/@material-ui/core/List';
-import ListItem from '../../../node_modules/@material-ui/core/ListItem';
-import ListItemText from '../../../node_modules/@material-ui/core/ListItemText';
-import Toolbar from '../../../node_modules/@material-ui/core/Toolbar';
-import Typography from '../../../node_modules/@material-ui/core/Typography';
-import { withStyles } from '../../../node_modules/@material-ui/core/styles';
-import { Customer } from '../../components/Customer/Customer';
-import { Employee } from '../../components/Employee/Employee';
-import { Product } from '../../components/Product/Product';
-import { Sales } from '../../components/Sales/Sales';
+import React from 'react'
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden'
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Customer from '../../components/Customer';
+import Employee from '../../components/Employee';
+import Product from '../../components/Product';
+import Sales from '../../components/Sales';
 import salesIcon from '../../assets/img/img.png';
 import productIcon from '../../assets/img/box.png';
 import customerIcon from '../../assets/img/customer.png';
@@ -22,7 +22,7 @@ import employeeIcon from '../../assets/img/employee.png';
 import lineMenu from '../../assets/img/line-menu.png';
 import { Link } from 'react-router-dom'
 import Routes from '../../routes/routes';
-import './sideBar.css'
+import './styles.css'
 
 const drawerWidth = 240;
 

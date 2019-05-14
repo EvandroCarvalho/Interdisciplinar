@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import 'react-table/react-table.css'
-import './Employee.css'
+import './styles.css'
 import { EmployeeRegister } from './EmployeeRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -14,7 +14,7 @@ import {
     // deleteEmployee
 } from '../../actions/employee'
 
-export class Employee extends Component {
+export default class Employee extends Component {
 
 
     state = {
@@ -131,7 +131,7 @@ export class Employee extends Component {
             modalDeleteIsOpen,
             employee
         } = this.state
-        
+
         return (
             <div>
                 <h3>Funcionários</h3>
