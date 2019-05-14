@@ -6,6 +6,7 @@ export default class Product extends Component {
 
 
     state = {
+        
         modalAddIsOpen: false
     };
 

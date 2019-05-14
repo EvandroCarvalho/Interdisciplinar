@@ -11,7 +11,6 @@ import 'react-table/react-table.css'
 
 export default class Customer extends Component {
 
-
     state = {
         modalAddIsOpen: false,
         modalRemoveIsOpen: false
