@@ -12,7 +12,6 @@ import {
     saveCustomer,
     updateCustomer,
     deleteCustomer
-    // deleteCustomer
 } from '../../actions/customer'
 
 export default class Customer extends Component {
