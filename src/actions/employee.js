@@ -4,7 +4,6 @@ import {
     updateEmployeeService,
     deleteEmployeeService
 } from '../service/employeeService'
-import { async } from 'q';
 
 export const findEmployee = async () => {
     const response = await findEmployeeService()

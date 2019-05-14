@@ -5,17 +5,16 @@ import {
     updateCustomerService,
     deleteCustomerService
 } from '../service/customerService'
-import { async } from 'q';
 
 export const findCustomerByCPF = async (cpf) => {
     const response = await findCustomerByCPFService(cpf)
     console.log(response)
-    return response;
+    return response
 }
 
 export const findCustomer = async () => {
     const response = await findCustomerService()
-    return response;
+    return response
 }
 
 export const saveCustomer = async (payload) => {

@@ -1,16 +1,17 @@
 import React, {Component} from 'react'
 import 'react-table/react-table.css'
 import './styles.css'
-import { CustomerRegister } from './CustomerRegister'
+import { CustomerRegister } from './customerRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-table'
 import Edit from '../../assets/img/edit.png'
 import Delete from '../../assets/img/delete.png'
 import {
-    findCustomer
-    // saveCustomer,
-    // updateCustomer,
+    findCustomer,
+    saveCustomer,
+    updateCustomer,
+    deleteCustomer
     // deleteCustomer
 } from '../../actions/customer'
 
@@ -57,13 +58,13 @@ export default class Customer extends Component {
         this.setState({modalAddOrEditIsOpen: false})
     }
 
-    save = (payload) => {
+    save = async (payload) => {
         if (payload.id) {
-            // save(payload)
+            await updateCustomer(payload)
         } else {
-            // update(payload)
+            await saveCustomer(payload)
         }
-        // searchCustomer  
+        this.searchCustomer()  
         this.closeModalAddOrEdit()
     }
 
@@ -75,8 +76,9 @@ export default class Customer extends Component {
         this.setState({modalDeleteIsOpen: false})
     }
 
-    delete = () => {
-        // delete(this.state.customer.id)
+    delete = async () => {
+        await deleteCustomer(this.state.customer.id)
+        this.searchCustomer()
         this.closeModalDelete()
     }
 

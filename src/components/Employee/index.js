@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
 import 'react-table/react-table.css'
 import './styles.css'
-import { EmployeeRegister } from './EmployeeRegister'
+import { EmployeeRegister } from './employeeRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-table'
 import Edit from '../../assets/img/edit.png'
 import Delete from '../../assets/img/delete.png'
 import {
-    findEmployee
-    // saveEmployee,
-    // updateEmployee,
-    // deleteEmployee
+    findEmployee,
+    saveEmployee,
+    updateEmployee,
+    deleteEmployee
 } from '../../actions/employee'
 
 export default class Employee extends Component {
@@ -58,13 +58,13 @@ export default class Employee extends Component {
         this.setState({modalAddOrEditIsOpen: false})
     }
 
-    save = (payload) => {
+    save = async (payload) => {
         if (payload.id) {
-            // save(payload)
+            await updateEmployee(payload)
         } else {
-            // update(payload)
+            await saveEmployee(payload)
         }
-        // searchEmployee  
+        this.searchEmployee()  
         this.closeModalAddOrEdit()
     }
 
@@ -76,8 +76,9 @@ export default class Employee extends Component {
         this.setState({modalDeleteIsOpen: false})
     }
 
-    delete = () => {
-        // delete(this.state.employee.id)
+    delete = async () => {
+        await deleteEmployee(this.state.employee.id)
+        this.searchEmployee()
         this.closeModalDelete()
     }
 

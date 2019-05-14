@@ -51,6 +51,11 @@ export class EmployeeRegister extends Component {
                     <Modal.Body>
                         <div className="col-md-12">
                             <Form.Group controlId="formBasicEmail">
+                                <Form.Control
+                                    hidden
+                                    id="id"
+                                    defaultValue={employee.id}
+                                />
                                 <Form.Label>Nome</Form.Label>
                                 <Form.Control
                                     tyle="text"
