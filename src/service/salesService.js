@@ -1,8 +1,18 @@
-const urlFindById = "https://salesmodule.herokuapp.com/v1/employees/"
-const urlFindByName = "https://salesmodule.herokuapp.com/v1/employees/findByName/"
-export const findEmployeeByIdService = async (id) => {
-    let response = '';
-    await fetch(urlFindById + id)
+const url = "https://salesmodule.herokuapp.com/v1/employees"
+const urlSales = "https://salesmodule.herokuapp.com/v1/sales/saveList"
+export const findEmployeeByIdService = async (employeeId) => {
+    let response = {}
+    await fetch(`${url}/${employeeId}`)
+        .then(resp => resp.json())
+       .then(body => {
+            response = body
+        })
+    return response
+}
+
+export const findEmployeeByNameService = async (employeeName) => {
+    let response = {}
+    await fetch(`${url}/findByName/${employeeName}`)
         .then(resp => resp.json())
         .then(body => {
             response = body
@@ -10,12 +20,13 @@ export const findEmployeeByIdService = async (id) => {
     return response
 }
 
-export const findEmployeeByNameService = async (name) => {
-    let response = "";
-    await fetch(urlFindByName + name)
-        .then(resp => resp.json())
-        .then(body => {
-            response = body
-        })
-    return response[0]
+export const finishOrderService = async (order) => {
+    let response = {}
+    await fetch(urlSales, {
+        method: 'post',
+        body: JSON.stringify(order),
+        headers: { 'Content-Type': 'application/json'},
+    })
+        .then(resp => response = resp)
+    return response
 }

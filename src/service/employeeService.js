@@ -40,3 +40,23 @@ export const deleteEmployeeService = async (id) => {
         .then(resp => response = resp)
     return response
 }
+
+export const findEmployeeByIdService = async (employeeId) => {
+    let response = {}
+    await fetch(`${url}/${employeeId}`)
+        .then(resp => resp.json())
+       .then(body => {
+            response = body
+        })
+    return response
+}
+
+export const findEmployeeByNameService = async (employeeName) => {
+    let response = {}
+    await fetch(`${url}/findByName/${employeeName}`)
+        .then(resp => resp.json())
+        .then(body => {
+            response = body
+        })
+    return response
+}
