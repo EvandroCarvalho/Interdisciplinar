@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import 'react-table/react-table.css'
 import './styles.css'
-import { EmployeeRegister } from './EmployeeRegister'
+import { EmployeeRegister } from './employeeRegister'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-table'
