@@ -68,7 +68,6 @@ export default class Sales extends Component {
     searchCustomerByCPF = async (cpf) => {
         const response = await findCustomerByCPF(cpf)
         await this.setState({ customer: response })
-        console.log(this.state.customer.id)
         if (response.name) {
             this.setState({ findCustomer: true, customerNotFound: false })
         } else {

@@ -10,7 +10,6 @@ import Delete from '../../assets/img/delete.png'
 import './styles.css'
 import ModalCustomer from '../modalCustomer';
 
-
 export default class ProductsSale extends Component {
 
     state = {
@@ -35,7 +34,8 @@ export default class ProductsSale extends Component {
         itemName: '',
         total: 0,
         invoice: 0,
-        showModal: false
+        showModal: false,
+        notFount: false
     }
 
     componentDidMount() {
@@ -147,16 +147,30 @@ export default class ProductsSale extends Component {
 
     findItemByName = async (name) => {
         let item = await findItemByName(name)
-        this.setState({
-            itemId: item[0].id,
-            itemName: item[0].name,
-            tableColumns: item[0]
-        })
+        if (item.length) {
+            this.setState({
+                itemId: item[0].id,
+                itemName: item[0].name,
+                tableColumns: item[0],
+                notFount: false
+            })
+        } else {
+            this.setState({ notFount: true, itemId: '' })
+        }
     }
 
     findItemById = async (id) => {
         let item = await findItemById(id)
-        this.setState({ itemName: item.name, tableColumns: item })
+        if (item.name) {
+            this.setState({
+                itemName: item.name,
+                tableColumns: item,
+                notFount: false
+            })
+        } else {
+            this.setState({ notFount: true, itemName: '' })
+        }
+
     }
 
     finishOrder = async (data) => {
@@ -167,7 +181,7 @@ export default class ProductsSale extends Component {
             })],
             invoice: invoiceNumber
         })
-        
+
         const salesList = {
             salesList: data,
         };
@@ -183,8 +197,9 @@ export default class ProductsSale extends Component {
             itemName,
             total,
             showModal,
-            invoice
-            } = this.state
+            invoice,
+            notFount
+        } = this.state
         return (
             <Fragment>
                 <div>
@@ -222,6 +237,9 @@ export default class ProductsSale extends Component {
                                 </Button>
                             </InputGroup.Append>
                         </InputGroup>
+                        <div className="text-danger mb-2 col-md-4" hidden={!notFount}>
+                            <p>Produto não encontrado</p>
+                        </div>
                     </div>
                     <div className="col-md-4">
                         <Button
@@ -270,11 +288,11 @@ export default class ProductsSale extends Component {
                 </div>
                 <div className='modal'>
                     <ModalCustomer
-                        showModal = {showModal}
+                        showModal={showModal}
                         title={"Finalizado"}
                         bodyMessage={`Pedido finalizado. Fatura: ${invoice}`}
-                        closeModal={() => this.setState({showModal: false})}
-                        closeButton={() => this.setState({showModal: false})}
+                        closeModal={() => this.setState({ showModal: false })}
+                        closeButton={() => this.setState({ showModal: false })}
                     />
                 </div>
             </Fragment>
