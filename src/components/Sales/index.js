@@ -16,6 +16,7 @@ export default class Sales extends Component {
         findCustomer: false,
         customerCPF: '',
         customer: {
+            id: '',
             name: '',
             phone: '',
             email: '',
@@ -41,11 +42,14 @@ export default class Sales extends Component {
     }
 
     searchEmployeeByName = async (name) => {
-        const { id: employeeId } = await findEmployeeByName(name)
-        if (employeeId) {
-            this.setState({ employeeId, employeeNotFound: false })
-        } else {
+        const response = await findEmployeeByName(name)
+        if (response.status === 404) {
             this.setState({employeeNotFound: true})
+        } else {
+            this.setState({ employeeId: response[0].id,
+                employeeName: response[0].name,
+                employeeNotFound: false
+             })
         }
     }
 
@@ -63,7 +67,8 @@ export default class Sales extends Component {
 
     searchCustomerByCPF = async (cpf) => {
         const response = await findCustomerByCPF(cpf)
-        this.setState({ customer: response })
+        await this.setState({ customer: response })
+        console.log(this.state.customer.id)
         if (response.name) {
             this.setState({ findCustomer: true, customerNotFound: false })
         } else {
@@ -73,15 +78,13 @@ export default class Sales extends Component {
 
     checkedCPF = (checked) => {
         this.setState({
-            isCPF: true,
-            isCNPJ: false,
+            isCPF: checked,
             inputRadioPlaceHolder: 'C.P.F. do cliente'
         })
     }
     checkedCNPJ = (checked) => {
         this.setState({
-            isCPF: false,
-            isCNPJ: true,
+            isCNPJ: checked,
             inputRadioPlaceHolder: 'C.N.P.J. do cliente'
         })
     }
@@ -179,7 +182,7 @@ export default class Sales extends Component {
                                     <button className="btn btn-primary" type="button" id="searchByName"
                                         onClick={() => this.searchCustomerByCPF(customerCPF)}
                                     >
-                                        Consultar
+                                            Consultar
                                     </button>
                                 </div>
                             </div>
@@ -240,7 +243,13 @@ export default class Sales extends Component {
                                     />
                                 </Form.Group>
                                 <div>
-                                        <Link to="vendas/produtos">
+                                        <Link to={{
+                                            pathname: "vendas/produtos",
+                                            state: {
+                                                employeeId,
+                                                customerId: customer.id,
+                                            }  
+                                        }}>
                                             <Button variant="primary" type="submit">
                                                 Confirmar
                                             </Button>

@@ -1,5 +1,6 @@
 const urlFindByCpf = "https://salesmodule.herokuapp.com/v1/customers/findByCPF/"
 const url = "https://salesmodule.herokuapp.com/v1/customers"
+//const urlFindByCpf = "http://localhost:8080/v1/customers/findByCPF/"
 
 export const findCustomerByCPFService = async (cpf) => {
     let response = ""

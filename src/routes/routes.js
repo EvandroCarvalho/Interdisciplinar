@@ -6,7 +6,7 @@ import Employee from '../components/Employee';
 import Product from '../components/Product';
 import Sales from '../components/Sales';
 import Welcome from '../components/Welcome';
-import product from '../components/Sales/products';
+import ProductsSale from '../components/Sales/productsSale'
 
 export default class Routes extends Component {
 
@@ -18,7 +18,7 @@ export default class Routes extends Component {
                 <Route path="/clientes" exact component={Customer}/>
                 <Route path="/produtos" exact component={Product}/>
                 <Route path="/vendas" exact component={Sales}/>
-                <Route path="/vendas/produtos" exact component={product}/>
+                <Route path="/vendas/produtos" exact component={ProductsSale}/>
             </Switch>
         )
     }

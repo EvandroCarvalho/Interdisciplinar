@@ -1,4 +1,4 @@
-const url = "https://salesmodule.herokuapp.com/v1/product"
+const url = "https://salesmodule.herokuapp.com/v1/products"
 
 export const findProductService = async () => {
     let response = ""
@@ -39,4 +39,24 @@ export const deleteProductService = async (id) => {
     })
         .then(resp => response = resp)
     return response
+}
+
+export const findItemByIdService = async (productId) => {
+  let response = ''
+  await fetch(`${url}/${productId}`)
+      .then(resp => resp.json())
+      .then(body => {
+          response = body
+      })
+  return response
+}
+
+export const findItemByNameService = async (productName) => {
+  let response = ''
+  await fetch(`${url}/findByName/${productName}`)
+      .then(resp => resp.json())
+      .then(body => {
+          response = body
+      })
+  return response
 }
