@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
 export default class ModalCustomer extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
 
   render() {
     return (

@@ -176,9 +176,9 @@ export default class ProductsSale extends Component {
     finishOrder = async (data) => {
         let invoiceNumber = Math.floor((Math.random() * 1000) + 1);
         await this.setState({
-            data: [data.map((item, index) => {
+            data: [data.map((item, index) => 
                 item.invoice = invoiceNumber
-            })],
+            )],
             invoice: invoiceNumber
         })
 
