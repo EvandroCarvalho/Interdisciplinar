@@ -109,7 +109,11 @@ export default class Product extends Component {
         Header: "Codigo",
         accessor: "id",
         Cell: row => (this.formatCell(row.value))
-    }, {
+    },{
+            Header: "Nome",
+            accessor: "nome",
+            Cell: row => (this.formatCell(row.value))
+    },{
         Header: "Descricao",
         accessor: "descricao",
         Cell: row => (this.formatCell(row.value))
