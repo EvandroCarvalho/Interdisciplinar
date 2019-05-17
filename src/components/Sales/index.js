@@ -43,7 +43,7 @@ export default class Sales extends Component {
 
     searchEmployeeByName = async (name) => {
         const response = await findEmployeeByName(name)
-        if (response.status === 404) {
+        if (response.status === 404 || response.status == 400) {
             this.setState({employeeNotFound: true})
         } else {
             this.setState({ employeeId: response[0].id,
