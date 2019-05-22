@@ -16,15 +16,7 @@ import {
 
 export default class Product extends Component {
   state = {
-    data: [
-      {
-        id: 1,
-        name: "mouse",
-        brand: "mouse preto",
-        sellPrice: 30,
-        price: 20
-      }
-    ],
+    data: [],
     modalAddOrEditIsOpen: false,
     modalRemoveIsOpen: false,
     product: {
@@ -36,7 +28,7 @@ export default class Product extends Component {
   };
 
   componentDidMount() {
-    // this.searchProduct()
+    this.searchProduct();
   }
 
   searchProduct = async () => {
