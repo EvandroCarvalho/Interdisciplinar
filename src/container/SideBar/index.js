@@ -75,14 +75,16 @@ class SideBar extends React.Component {
     switch (select) {
       case 0:
         return <Login />;
-      case 0:
-        return <Employee />;
       case 1:
-        return <Customer />;
+        return <Employee />;
       case 2:
-        return <Product />;
+        return <Customer />;
       case 3:
+        return <Product />;
+      case 4:
         return <Sales />;
+      case 5:
+        return <Login />;
       default:
         return <div>Sistema de Gestão de Vendas - Bem Vindo</div>;
     }
