@@ -1,42 +1,41 @@
 .Form {
-    border-style: solid;
-    border-width: 1px;
-    border-color: gray;
-    padding: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  padding: 20px;
 }
 
 .Button {
-    display: flex;
-    justify-content: space-around
+  display: flex;
+  justify-content: space-around;
 }
 
 .CustomerNotFound {
-    padding: 10px;
-    margin-left: 10px
+  padding: 10px;
+  margin-left: 10px;
 }
 
 .radioButtons {
-    display: flex;
-
+  display: flex;
 }
 #typeCustomer {
-    margin-right: 5px
+  margin-right: 5px;
 }
 
 .search {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.total{
-    display: flex;
-    width: 150px;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-left: 1px
+.total {
+  display: flex;
+  width: 150px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-left: 1px;
 }
 
 .modal {
-    margin-top: 10%
+  margin-top: 10%;
 }

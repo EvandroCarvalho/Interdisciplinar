@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { Modal, Button } from 'react-bootstrap'
+import React, { Component } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 export default class ModalCustomer extends Component {
-
   render() {
     return (
       <>
@@ -18,6 +17,6 @@ export default class ModalCustomer extends Component {
           </Modal.Footer>
         </Modal>
       </>
-    )
+    );
   }
 }

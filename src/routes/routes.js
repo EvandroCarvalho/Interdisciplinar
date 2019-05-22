@@ -1,25 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import { Switch, Route} from 'react-router-dom'
-import Customer from '../components/Customer'
-import Employee from '../components/Employee';
-import Product from '../components/Product';
-import Sales from '../components/Sales';
-import Welcome from '../components/Welcome';
-import ProductsSale from '../components/Sales/productsSale'
+import { Switch, Route } from "react-router-dom";
+import Customer from "../components/Customer";
+import Employee from "../components/Employee";
+import Product from "../components/Product";
+import Sales from "../components/Sales";
+import Login from "../components/Login";
+import Welcome from "../components/Welcome";
+import ProductsSale from "../components/Sales/productsSale";
 
 export default class Routes extends Component {
-
-    render() {
-        return (
-            <Switch>
-                <Route path="/" exact component={Welcome}/>
-                <Route path="/funcionarios" exact component={Employee}/>
-                <Route path="/clientes" exact component={Customer}/>
-                <Route path="/produtos" exact component={Product}/>
-                <Route path="/vendas" exact component={Sales}/>
-                <Route path="/vendas/produtos" exact component={ProductsSale}/>
-            </Switch>
-        )
-    }
+  render() {
+    return (
+      <Switch>
+        <Route path="/" exact component={Login} />
+        <Route path="/home" exact component={Welcome} />
+        <Route path="/funcionarios" exact component={Employee} />
+        <Route path="/clientes" exact component={Customer} />
+        <Route path="/produtos" exact component={Product} />
+        <Route path="/vendas" exact component={Sales} />
+        <Route path="/vendas/produtos" exact component={ProductsSale} />
+      </Switch>
+    );
+  }
 }
