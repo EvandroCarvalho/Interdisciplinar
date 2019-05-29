@@ -81,33 +81,7 @@ class SideBar extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
-  getComponentByindex = select => {
-    switch (select) {
-      case 0:
-        return <Login />;
-      case 1:
-        return <Employee />;
-      case 2:
-        return <Customer />;
-      case 3:
-        return <Product />;
-      case 4:
-        return <Sales />;
-      case 5:
-        return <Login />;
-      default:
-        return <div>Sistema de Gestão de Vendas - Bem Vindo</div>;
-    }
-  };
-
-  searchUser = user => {
-    if (user.username === "teste" && user.password === "123456") {
-      this.setState({ user });
-      return true;
-    }
-
-    return false;
-  };
+  setUser = user => this.setState({ user });
 
   render() {
     const { classes, theme } = this.props;
@@ -159,42 +133,40 @@ class SideBar extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        {user && (
-          <nav className={classes.drawer}>
-            <Hidden smUp implementation="css">
-              <Drawer
-                container={this.props.container}
-                variant="temporary"
-                anchor={theme.direction === "rtl" ? "right" : "left"}
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-                classes={{
-                  paper: classes.drawerPaper
-                }}
-              >
-                {drawer}
-              </Drawer>
-            </Hidden>
-            <Hidden xsDown implementation="css">
-              <Drawer
-                classes={{
-                  paper: classes.drawerPaper
-                }}
-                variant="permanent"
-                open
-              >
-                {drawer}
-              </Drawer>
-            </Hidden>
-          </nav>
-        )}
+        <nav className={classes.drawer}>
+          {user && (
+            <>
+              <Hidden smUp implementation="css">
+                <Drawer
+                  container={this.props.container}
+                  variant="temporary"
+                  anchor={theme.direction === "rtl" ? "right" : "left"}
+                  open={this.state.mobileOpen}
+                  onClose={this.handleDrawerToggle}
+                  classes={{
+                    paper: classes.drawerPaper
+                  }}
+                >
+                  {drawer}
+                </Drawer>
+              </Hidden>
+              <Hidden xsDown implementation="css">
+                <Drawer
+                  classes={{
+                    paper: classes.drawerPaper
+                  }}
+                  variant="permanent"
+                  open
+                >
+                  {drawer}
+                </Drawer>
+              </Hidden>
+            </>
+          )}
+        </nav>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          {!user ? (
-            <Login searchUser={this.searchUser} />
-          ) : (
-            <Routes user={user} />
-          )}
+          {!user ? <Login setUser={this.setUser} /> : <Routes user={user} />}
         </main>
       </div>
     );

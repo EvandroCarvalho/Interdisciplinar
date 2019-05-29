@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { findUserByUsername } from "../../actions/user";
 
 export default class Login extends Component {
   onSubmit = e => {
@@ -13,8 +14,16 @@ export default class Login extends Component {
       return this.getElementNameAndValue(current, result);
     }, {});
 
-    if (!this.props.searchUser(user))
-      this.setState({ invalid: "usuário ou senha incorreta" });
+    this.searchUser(user);
+  };
+
+  searchUser = async user => {
+    const { setUser } = this.props;
+
+    // const response = await findUserByUsername(user.username);
+    // console.log(response);
+
+    if (user.username === "teste" && user.password === "123456") setUser(user);
   };
 
   getElementNameAndValue = (element, returnObject) => {
@@ -35,43 +44,35 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <Form onSubmit={this.onSubmit}>
-          <div className="container">
-            <div className="row justify-content-md-center">
-              <div className="col-md-4">
-                <div style={{ padding: "0px 0px 5px 0px" }}>
-                  <Form.Label>Usuário</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="usuário"
-                    size="md"
-                    id="username"
-                    defaultValue=""
-                  />
-                </div>
-                <div style={{ padding: "5px 0px 5px 0px" }}>
-                  <Form.Label>Senha</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="senha"
-                    size="md"
-                    id="password"
-                    defaultValue=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row justify-content-md-center">
-              <div style={{ padding: "5px 0px 0px 0px" }}>
-                <Button variant="primary" type="submit">
-                  Entrar
-                </Button>
-              </div>
-            </div>
+      <Form onSubmit={this.onSubmit}>
+        <div className="col-md-4">
+          <div style={{ padding: "0px 0px 5px 0px" }}>
+            <Form.Label>Usuário</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="usuário"
+              size="md"
+              id="username"
+              defaultValue=""
+            />
           </div>
-        </Form>
-      </div>
+          <div style={{ padding: "5px 0px 5px 0px" }}>
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="senha"
+              size="md"
+              id="password"
+              defaultValue=""
+            />
+          </div>
+          <div style={{ padding: "5px 0px 0px 0px" }}>
+            <Button variant="primary" type="submit">
+              Entrar
+            </Button>
+          </div>
+        </div>
+      </Form>
     );
   }
 }
