@@ -20,6 +20,8 @@ import salesIcon from "../../assets/img/img.png";
 import productIcon from "../../assets/img/box.png";
 import customerIcon from "../../assets/img/customer.png";
 import employeeIcon from "../../assets/img/employee.png";
+import homeIcon from "../../assets/img/home.png";
+import exitIcon from "../../assets/img/exit.png";
 import lineMenu from "../../assets/img/line-menu.png";
 import { Link } from "react-router-dom";
 import Routes from "../../routes/routes";
@@ -64,7 +66,14 @@ class SideBar extends React.Component {
     mobileOpen: false,
     options: ["home", "funcionarios", "clientes", "produtos", "vendas", "sair"],
     select: "",
-    icon: ["", employeeIcon, customerIcon, productIcon, salesIcon, ""],
+    icon: [
+      homeIcon,
+      employeeIcon,
+      customerIcon,
+      productIcon,
+      salesIcon,
+      exitIcon
+    ],
     user: null
   };
 
