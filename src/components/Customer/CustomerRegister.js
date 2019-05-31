@@ -7,6 +7,14 @@ import InputMask from "react-input-mask";
 import CurrencyInput from "react-currency-input";
 
 export class CustomerRegister extends Component {
+  state = {
+    isCPF: true,
+    isCNPJ: false,
+    cnpjMask: "99.999.999/9999-99",
+    cpfMask: "999.999.999-99",
+    inputRadioPlaceHolder: "C.P.F. do cliente"
+  };
+
   handleSubmit = e => {
     const { save } = this.props;
     e.preventDefault();
@@ -22,24 +30,57 @@ export class CustomerRegister extends Component {
     save(payload);
   };
 
+  componentDidMount() {
+    const { customer } = this.props;
+    if (customer.cpf.length > 11) this.setState({ isCPF: false, isCNPJ: true });
+  }
+
   getElementNameAndValue = (element, returnObject) => {
     let payloadResult = { ...returnObject };
     let elementName = element.name.length ? element.name : element.id;
-    if (elementName && elementName.length) {
-      if (elementName.includes(".")) {
-        let nameSplit = elementName.split(".");
-        payloadResult[nameSplit[0]] = {
-          [nameSplit[1]]: element.value
-        };
-      } else {
-        payloadResult[elementName] = element.value;
-      }
-    }
+    payloadResult[elementName] = element.value
+      // eslint-disable-next-line
+      .replace(/(\.|\(|\) |\-|\_|\R\$)/g, "")
+      // eslint-disable-next-line
+      .replace(/(\,)/g, ".");
     return payloadResult;
   };
 
+  checkedCPF = checked => {
+    this.setState({
+      isCPF: checked,
+      inputRadioPlaceHolder: "C.P.F. do cliente"
+    });
+  };
+
+  checkedCNPJ = checked => {
+    this.setState({
+      isCNPJ: checked,
+      inputRadioPlaceHolder: "C.N.P.J. do cliente"
+    });
+  };
+
+  getBirthDate() {
+    const { customer } = this.props;
+    if (customer.birthDate) {
+      const date = `${customer.birthDate[2]}/${
+        customer.birthDate[1] < 10
+          ? "0" + customer.birthDate[1]
+          : customer.birthDate[1]
+      }/${customer.birthDate[0]}`;
+      return date;
+    }
+  }
+
   render() {
     const { customer, close } = this.props;
+    const {
+      isCPF,
+      isCNPJ,
+      inputRadioPlaceHolder,
+      cpfMask,
+      cnpjMask
+    } = this.state;
 
     return (
       <Modal.Dialog>
@@ -53,20 +94,45 @@ export class CustomerRegister extends Component {
             <Form.Group>
               <Form.Label>Nome</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Nome do Cliente"
                 size="md"
                 id="name"
                 defaultValue={customer.name}
               />
-              <Form.Label>C.P.F</Form.Label>
+            </Form.Group>
+            <Form.Group>
+              <Form.Row>
+                <Form.Group as={Col} md="3">
+                  <Form.Check
+                    type="radio"
+                    name="typeCustomer"
+                    label="C.P.F"
+                    checked={isCPF}
+                    onChange={e => this.checkedCPF(e.target.checked)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Check
+                    type="radio"
+                    label="C.N.P.J"
+                    name="typeCustomer"
+                    checked={isCNPJ}
+                    onChange={e => this.checkedCNPJ(e.target.checked)}
+                  />
+                </Form.Group>
+              </Form.Row>
+              <Form.Label>{inputRadioPlaceHolder}</Form.Label>
               <InputMask
-                mask="999.999.999-99"
+                required
+                mask={isCPF ? cpfMask : cnpjMask}
                 className="form-control"
-                placeholder="CPF do Cliente"
+                placeholder={inputRadioPlaceHolder}
                 defaultValue={customer.cpf}
                 type="text"
                 id="cpf"
+                onChange={this.removeMask}
               />
             </Form.Group>
             <Form.Row>
@@ -77,7 +143,7 @@ export class CustomerRegister extends Component {
                   className="form-control"
                   type="text"
                   placeholder="Data de Nascimento do Cliente"
-                  defaultValue={customer.birthDate}
+                  defaultValue={this.getBirthDate()}
                   id="birthDate"
                 />
               </Form.Group>
@@ -133,7 +199,7 @@ export class CustomerRegister extends Component {
               prefix="R$ "
               className="form-control"
               id="salary"
-              defaultValue={customer.salary}
+              value={customer.salary}
             />
           </Modal.Body>
 

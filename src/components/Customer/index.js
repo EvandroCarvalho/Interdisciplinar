@@ -89,7 +89,23 @@ export default class Customer extends Component {
   };
 
   formatCell = row => {
-    return <div style={{ padding: "6px" }}>{row}</div>;
+    return <div style={{ padding: "6px" }}>{row ? row : "-"}</div>;
+  };
+
+  formatCellSalary = row => {
+    return (
+      <div style={{ padding: "6px" }}>{`R$ ${
+        row ? row.toLocaleString("pt-BR") : "00,00"
+      }`}</div>
+    );
+  };
+
+  formatCellDate = row => {
+    if (row) {
+      const date = `${row[2]}/${row[1] < 10 ? "0" + row[1] : row[1]}/${row[0]}`;
+      return <div style={{ padding: "6px" }}>{date}</div>;
+    }
+    return <div>-</div>;
   };
 
   formatCellActions = row => {
@@ -125,6 +141,16 @@ export default class Customer extends Component {
       Cell: row => this.formatCell(row.value)
     },
     {
+      Header: "Nascimento",
+      accessor: "birthDate",
+      Cell: row => this.formatCellDate(row.value)
+    },
+    {
+      Header: "Gênero",
+      accessor: "gender",
+      Cell: row => this.formatCell(row.value)
+    },
+    {
       Header: "Telefone",
       accessor: "phone",
       Cell: row => this.formatCell(row.value)
@@ -138,6 +164,11 @@ export default class Customer extends Component {
       Header: "Endereço",
       accessor: "address",
       Cell: row => this.formatCell(row.value)
+    },
+    {
+      Header: "Salário",
+      accessor: "salary",
+      Cell: row => this.formatCellSalary(row.value)
     },
     {
       Header: "Ações",

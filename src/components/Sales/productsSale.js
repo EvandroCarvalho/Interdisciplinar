@@ -138,6 +138,7 @@ export default class ProductsSale extends Component {
       await this.updateTotal(tableColumns.sellPrice);
     }
   };
+
   updateTotal = () => {
     this.setState({
       total: this.state.data.reduce((ac, arr) => {
@@ -184,6 +185,7 @@ export default class ProductsSale extends Component {
     const salesList = {
       salesList: data
     };
+
     let response = await finishOrder(salesList);
     if (response.status === 201) {
       this.setState({

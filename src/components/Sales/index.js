@@ -80,6 +80,7 @@ export default class Sales extends Component {
       inputRadioPlaceHolder: "C.P.F. do cliente"
     });
   };
+
   checkedCNPJ = checked => {
     this.setState({
       isCNPJ: checked,
@@ -174,8 +175,7 @@ export default class Sales extends Component {
                 <input
                   type="radio"
                   name="typeCustomer"
-                  id="typeCustomer"
-                  value={customerCPF}
+                  checked={isCPF}
                   onChange={e => this.checkedCPF(e.target.checked)}
                 />
                 <label>C.P.F</label>
@@ -184,8 +184,7 @@ export default class Sales extends Component {
                 <input
                   type="radio"
                   name="typeCustomer"
-                  id="typeCustomer"
-                  value={customerCPF}
+                  checked={isCNPJ}
                   onChange={e => this.checkedCNPJ(e.target.checked)}
                 />
                 <label>C.N.P.J</label>

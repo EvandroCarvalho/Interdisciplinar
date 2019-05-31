@@ -24,16 +24,11 @@ export class EmployeeRegister extends Component {
   getElementNameAndValue = (element, returnObject) => {
     let payloadResult = { ...returnObject };
     let elementName = element.name.length ? element.name : element.id;
-    if (elementName && elementName.length) {
-      if (elementName.includes(".")) {
-        let nameSplit = elementName.split(".");
-        payloadResult[nameSplit[0]] = {
-          [nameSplit[1]]: element.value
-        };
-      } else {
-        payloadResult[elementName] = element.value;
-      }
-    }
+    payloadResult[elementName] = element.value
+      // eslint-disable-next-line
+      .replace(/(\.|\(|\) |\-|\_|\R\$)/g, "")
+      // eslint-disable-next-line
+      .replace(/(\,)/g, ".");
     return payloadResult;
   };
 
@@ -52,6 +47,7 @@ export class EmployeeRegister extends Component {
               <Form.Control hidden id="id" defaultValue={employee.id} />
               <Form.Label>Nome</Form.Label>
               <Form.Control
+                required
                 type="text"
                 placeholder="Nome do Funcionário"
                 size="md"
@@ -60,6 +56,7 @@ export class EmployeeRegister extends Component {
               />
               <Form.Label>C.P.F</Form.Label>
               <InputMask
+                required
                 mask="999.999.999-99"
                 className="form-control"
                 placeholder="CPF do Funcionário"

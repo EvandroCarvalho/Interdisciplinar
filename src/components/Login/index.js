@@ -34,16 +34,7 @@ export default class Login extends Component {
   getElementNameAndValue = (element, returnObject) => {
     let payloadResult = { ...returnObject };
     let elementName = element.name.length ? element.name : element.id;
-    if (elementName && elementName.length) {
-      if (elementName.includes(".")) {
-        let nameSplit = elementName.split(".");
-        payloadResult[nameSplit[0]] = {
-          [nameSplit[1]]: element.value
-        };
-      } else {
-        payloadResult[elementName] = element.value;
-      }
-    }
+    payloadResult[elementName] = element.value;
     return payloadResult;
   };
 

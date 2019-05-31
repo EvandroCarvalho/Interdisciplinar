@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import CurrencyInput from "react-currency-input";
 
 export class ProductRegister extends Component {
   handleSubmit = e => {
@@ -23,16 +24,11 @@ export class ProductRegister extends Component {
   getElementNameAndValue = (element, returnObject) => {
     let payloadResult = { ...returnObject };
     let elementName = element.name.length ? element.name : element.id;
-    if (elementName && elementName.length) {
-      if (elementName.includes(".")) {
-        let nameSplit = elementName.split(".");
-        payloadResult[nameSplit[0]] = {
-          [nameSplit[1]]: element.value
-        };
-      } else {
-        payloadResult[elementName] = element.value;
-      }
-    }
+    payloadResult[elementName] = element.value
+      // eslint-disable-next-line
+      .replace(/(\.|\(|\)|\-|\_|\R\$)/g, "")
+      // eslint-disable-next-line
+      .replace(/(\,)/g, ".");
     return payloadResult;
   };
 
@@ -68,20 +64,24 @@ export class ProductRegister extends Component {
               <Form.Row>
                 <Form.Group as={Col} md="4">
                   <Form.Label>Preço de venda</Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="Preço de venda"
+                  <CurrencyInput
+                    decimalSeparator=","
+                    thousandSeparator="."
+                    prefix="R$ "
+                    className="form-control"
                     id="sellPrice"
-                    defaultValue={product.sellPrice}
+                    value={product.sellPrice}
                   />
                 </Form.Group>
                 <Form.Group as={Col} md="4">
                   <Form.Label>Preço</Form.Label>
-                  <Form.Control
-                    type="number"
-                    placeholder="Preço"
+                  <CurrencyInput
+                    decimalSeparator=","
+                    thousandSeparator="."
+                    prefix="R$ "
+                    className="form-control"
                     id="price"
-                    defaultValue={product.price}
+                    value={product.price}
                   />
                 </Form.Group>
               </Form.Row>

@@ -83,7 +83,7 @@ export default class Employee extends Component {
   };
 
   formatCell = row => {
-    return <div style={{ padding: "6px" }}>{row}</div>;
+    return <div style={{ padding: "6px" }}>{row ? row : "-"}</div>;
   };
 
   formatCellActions = row => {

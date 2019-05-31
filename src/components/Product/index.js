@@ -81,7 +81,15 @@ export default class Product extends Component {
   };
 
   formatCell = row => {
-    return <div style={{ padding: "6px" }}>{row}</div>;
+    return <div style={{ padding: "6px" }}>{row ? row : "-"}</div>;
+  };
+
+  formatCellValue = row => {
+    return (
+      <div style={{ padding: "6px" }}>{`R$ ${
+        row ? row.toLocaleString("pt-BR") : "00,00"
+      }`}</div>
+    );
   };
 
   formatCellActions = row => {
@@ -122,9 +130,14 @@ export default class Product extends Component {
       Cell: row => this.formatCell(row.value)
     },
     {
-      Header: "Valor de",
+      Header: "Valor de Venda",
       accessor: "sellPrice",
-      Cell: row => this.formatCell(row.value)
+      Cell: row => this.formatCellValue(row.value)
+    },
+    {
+      Header: "Valor de Custo",
+      accessor: "price",
+      Cell: row => this.formatCellValue(row.value)
     },
     {
       Header: "Ações",
