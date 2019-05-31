@@ -32,11 +32,11 @@ export default class ProductsSale extends Component {
     invoice: 0,
     showModal: false,
     notFount: false,
-    user: ""
+    username: ""
   };
 
   componentDidMount() {
-    const { employeeId, customerId, userId } = this.props.location.state;
+    const { employeeId, customerId, usarname } = this.props.location.state;
     this.setState({
       customer: {
         id: customerId
@@ -44,7 +44,7 @@ export default class ProductsSale extends Component {
       employee: {
         id: employeeId
       },
-      user: userId
+      usarname
     });
   }
 
@@ -119,7 +119,7 @@ export default class ProductsSale extends Component {
     customer,
     employee,
     itemName,
-    user
+    username
   }) => {
     let invoice = 123;
     tableColumns.discount = 0;
@@ -131,7 +131,7 @@ export default class ProductsSale extends Component {
       employee,
       itemName,
       invoice,
-      user
+      username
     };
     if (tableColumns.id) {
       await this.setState({ data: [...this.state.data, tableColumns] });
