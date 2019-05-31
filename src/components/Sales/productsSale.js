@@ -31,18 +31,20 @@ export default class ProductsSale extends Component {
     total: 0,
     invoice: 0,
     showModal: false,
-    notFount: false
+    notFount: false,
+    user: ""
   };
 
   componentDidMount() {
-    const { employeeId, customerId } = this.props.location.state;
+    const { employeeId, customerId, userId } = this.props.location.state;
     this.setState({
       customer: {
         id: customerId
       },
       employee: {
         id: employeeId
-      }
+      },
+      user: userId
     });
   }
 
@@ -111,7 +113,14 @@ export default class ProductsSale extends Component {
     this.setState({ itemId });
   };
 
-  saveItem = async ({ tableColumns, itemId, customer, employee, itemName }) => {
+  saveItem = async ({
+    tableColumns,
+    itemId,
+    customer,
+    employee,
+    itemName,
+    user
+  }) => {
     let invoice = 123;
     tableColumns.discount = 0;
     tableColumns.amount = 1;
@@ -121,7 +130,8 @@ export default class ProductsSale extends Component {
       customer,
       employee,
       itemName,
-      invoice
+      invoice,
+      user
     };
     if (tableColumns.id) {
       await this.setState({ data: [...this.state.data, tableColumns] });
@@ -170,7 +180,6 @@ export default class ProductsSale extends Component {
       data: [
         data.map(item => {
           item.invoice = invoiceNumber;
-          item.userId = this.props.location.state.userId;
         })
       ],
       invoice: invoiceNumber
