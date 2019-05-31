@@ -47,8 +47,8 @@ export class CustomerRegister extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <div className="col-md-12">
-              <Form.Control hidden id="id" defaultValue={customer.id} />
+            <Form.Control hidden id="id" defaultValue={customer.id} />
+            <Form.Group>
               <Form.Label>Nome</Form.Label>
               <Form.Control
                 type="text"
@@ -64,37 +64,64 @@ export class CustomerRegister extends Component {
                 id="cpf"
                 defaultValue={customer.cpf}
               />
-              <Form.Row>
-                <Form.Group as={Col} md="3">
-                  <Form.Label>Telefone</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Telefone"
-                    id="phone"
-                    defaultValue={customer.phone}
-                  />
-                </Form.Group>
-                <Form.Group as={Col}>
-                  <Form.Label>Email </Form.Label>
-                  <Form.Control
-                    type="email"
-                    md="4"
-                    placeholder="E-mail"
-                    id="email"
-                    defaultValue={customer.email}
-                  />
-                </Form.Group>
-              </Form.Row>
-              <Form.Group>
-                <Form.Label>Endereço completo</Form.Label>
+            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} md="8">
+                <Form.Label>Nascimento</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Endereço"
-                  id="address"
-                  defaultValue={customer.address}
+                  placeholder="Data de Nascimento do Cliente"
+                  id="birthDate"
+                  defaultValue={customer.birthDate}
                 />
               </Form.Group>
-            </div>
+              <Form.Group as={Col}>
+                <Form.Label>Gênero</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Gênero do Cliente"
+                  id="gender"
+                  defaultValue={customer.gender}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} md="3">
+                <Form.Label>Telefone</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Telefone"
+                  id="phone"
+                  defaultValue={customer.phone}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Email </Form.Label>
+                <Form.Control
+                  type="email"
+                  md="4"
+                  placeholder="E-mail"
+                  id="email"
+                  defaultValue={customer.email}
+                />
+              </Form.Group>
+            </Form.Row>
+            <Form.Group>
+              <Form.Label>Endereço completo</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Endereço"
+                id="address"
+                defaultValue={customer.address}
+              />
+            </Form.Group>
+            <Form.Label>Salário</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Salário do Cliente"
+              id="salary"
+              defaultValue={customer.salary}
+            />
           </Modal.Body>
 
           <Modal.Footer>

@@ -1,4 +1,4 @@
-const url = "https://salesmodule.herokuapp.com/v1/employees";
+const url = "https://interjobbackend.herokuapp.com/v1/employees";
 
 export const findEmployeeService = async () => {
   let response = "";

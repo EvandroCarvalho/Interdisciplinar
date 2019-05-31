@@ -31,11 +31,7 @@ export default class Routes extends Component {
           component={() => <Product user={user} />}
         />
         <Route path="/vendas" exact component={() => <Sales user={user} />} />
-        <Route
-          path="/vendas/produtos"
-          exact
-          component={() => <ProductsSale user={user} />}
-        />
+        <Route path="/vendas/produtos" exact component={ProductsSale} />
       </Switch>
     );
   }

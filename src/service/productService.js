@@ -1,4 +1,4 @@
-const url = "https://salesmodule.herokuapp.com/v1/products";
+const url = "https://interjobbackend.herokuapp.com/v1/products";
 
 export const findProductService = async () => {
   let response = "";

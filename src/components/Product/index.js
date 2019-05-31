@@ -129,11 +129,13 @@ export default class Product extends Component {
     {
       Header: "Ações",
       Cell: row => this.formatCellActions(row.original),
-      width: 100
+      width: 100,
+      show: this.props.user.profile === "admin"
     }
   ];
 
   render() {
+    const { user } = this.props;
     const {
       data,
       modalAddOrEditIsOpen,
@@ -145,18 +147,20 @@ export default class Product extends Component {
       <div>
         <h3>Produtos</h3>
 
-        <div className="row">
-          <div className="col-12">
-            <Button
-              style={{ float: "right" }}
-              variant="primary"
-              type="button"
-              onClick={() => this.openModalAddOrEdit()}
-            >
-              Novo
-            </Button>
+        {user.profile === "admin" && (
+          <div className="row">
+            <div className="col-12">
+              <Button
+                style={{ float: "right" }}
+                variant="primary"
+                type="button"
+                onClick={() => this.openModalAddOrEdit()}
+              >
+                Novo
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="container">
           <div className="Table">

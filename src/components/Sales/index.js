@@ -88,6 +88,7 @@ export default class Sales extends Component {
   };
 
   render() {
+    const { user } = this.props;
     const {
       employeeId,
       employeeName,
@@ -102,6 +103,7 @@ export default class Sales extends Component {
       inputRadioPlaceHolder,
       employeeNotFound
     } = this.state;
+
     return (
       <div>
         <div className="searchEmployee">
@@ -283,7 +285,8 @@ export default class Sales extends Component {
                       pathname: "vendas/produtos",
                       state: {
                         employeeId,
-                        customerId: customer.id
+                        customerId: customer.id,
+                        userId: user.id
                       }
                     }}
                   >

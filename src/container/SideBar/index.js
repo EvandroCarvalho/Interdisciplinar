@@ -12,10 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Login from "../../components/Login";
-import Customer from "../../components/Customer";
-import Employee from "../../components/Employee";
-import Product from "../../components/Product";
-import Sales from "../../components/Sales";
 import salesIcon from "../../assets/img/img.png";
 import productIcon from "../../assets/img/box.png";
 import customerIcon from "../../assets/img/customer.png";
@@ -97,7 +93,7 @@ class SideBar extends React.Component {
               className="link"
               to={text === "sair" || text === "home" ? "/" : `/${text}`}
               key={index}
-              onClick={text === "sair" ? () => this.searchUser(null) : () => {}}
+              onClick={text === "sair" ? () => this.setUser(null) : () => {}}
             >
               <ListItem button key={text}>
                 <img

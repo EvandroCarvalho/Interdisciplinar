@@ -1,5 +1,5 @@
-const url = "https://salesmodule.herokuapp.com/v1/employees";
-const urlSales = "https://salesmodule.herokuapp.com/v1/sales/saveList";
+const url = "https://interjobbackend.herokuapp.com/v1/employees";
+const urlSales = "https://interjobbackend.herokuapp.com/v1/sales/saveList";
 export const findEmployeeByIdService = async employeeId => {
   let response = {};
   await fetch(`${url}/${employeeId}`)

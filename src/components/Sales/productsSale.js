@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { InputGroup, Button, FormControl } from "react-bootstrap";
 import { findItemById, findItemByName, finishOrder } from "../../actions/sales";
 import Table from "react-table";
+import Modal from "react-bootstrap/Modal";
 import Delete from "../../assets/img/delete.png";
 import "./styles.css";
 import ModalCustomer from "../modalCustomer";
@@ -89,18 +90,6 @@ export default class ProductsSale extends Component {
       accessor: "brand",
       Cell: row => this.formatCell(row.value)
     },
-    // {
-    //     Header: "Desconto",
-    //     accessor: "discount",
-    //     Cell: row => (this.formatCell(row.value)),
-    //     width: 100
-    // },
-    // {
-    //     Header: "Quantidade",
-    //     accessor: "amount",
-    //     Cell: row => (this.formatCell(row.value)),
-    //     width: 100
-    // },
     {
       Header: "Preço",
       accessor: "sellPrice",
@@ -176,8 +165,14 @@ export default class ProductsSale extends Component {
 
   finishOrder = async data => {
     let invoiceNumber = Math.floor(Math.random() * 1000 + 1);
+
     await this.setState({
-      data: [data.map((item, index) => (item.invoice = invoiceNumber))],
+      data: [
+        data.map(item => {
+          item.invoice = invoiceNumber;
+          item.userId = this.props.location.state.userId;
+        })
+      ],
       invoice: invoiceNumber
     });
 
@@ -290,15 +285,17 @@ export default class ProductsSale extends Component {
             Finalizar Pedido
           </Button>
         </div>
-        <div className="modal">
+
+        <Modal
+          show={showModal}
+          onHide={() => this.setState({ showModal: false })}
+        >
           <ModalCustomer
-            showModal={showModal}
             title={"Finalizado"}
             bodyMessage={`Pedido finalizado. Fatura: ${invoice}`}
             closeModal={() => this.setState({ showModal: false })}
-            closeButton={() => this.setState({ showModal: false })}
           />
-        </div>
+        </Modal>
       </Fragment>
     );
   }

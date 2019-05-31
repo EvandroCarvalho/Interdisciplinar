@@ -19,11 +19,11 @@ export default class Login extends Component {
 
   searchUser = async user => {
     const { setUser } = this.props;
-
-    // const response = await findUserByUsername(user.username);
-    // console.log(response);
-
-    if (user.username === "teste" && user.password === "123456") setUser(user);
+    const response = await findUserByUsername(user.username);
+    if (!response.id) return alert("Usuário não encontrado");
+    if (response.id && user.password !== response.password)
+      return alert("Senha inválida");
+    return setUser(response);
   };
 
   getElementNameAndValue = (element, returnObject) => {
