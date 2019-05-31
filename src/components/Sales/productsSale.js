@@ -36,7 +36,7 @@ export default class ProductsSale extends Component {
   };
 
   componentDidMount() {
-    const { employeeId, customerId, usarname } = this.props.location.state;
+    const { employeeId, customerId, username } = this.props.location.state;
     this.setState({
       customer: {
         id: customerId
@@ -44,7 +44,7 @@ export default class ProductsSale extends Component {
       employee: {
         id: employeeId
       },
-      usarname
+      username
     });
   }
 
