@@ -177,11 +177,7 @@ export default class ProductsSale extends Component {
     let invoiceNumber = Math.floor(Math.random() * 1000 + 1);
 
     await this.setState({
-      data: [
-        data.map(item => {
-          item.invoice = invoiceNumber;
-        })
-      ],
+      data: [data.map(item => (item.invoice = invoiceNumber))],
       invoice: invoiceNumber
     });
 
@@ -268,7 +264,7 @@ export default class ProductsSale extends Component {
             pageSize={5}
             previousText="Anterior"
             nextText="Próxima"
-            noDataText="Nenhum item cadastrado"
+            noDataText="Nenhum item selecionado"
             pageText="Página"
             ofText="de"
             rowsText="linhas"

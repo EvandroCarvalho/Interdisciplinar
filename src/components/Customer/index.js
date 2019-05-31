@@ -24,7 +24,10 @@ export default class Customer extends Component {
       cpf: "",
       phone: "",
       email: "",
-      address: ""
+      address: "",
+      birthDate: "",
+      gender: "",
+      salary: ""
     }
   };
 
@@ -47,7 +50,10 @@ export default class Customer extends Component {
           cpf: "",
           phone: "",
           email: "",
-          address: ""
+          address: "",
+          birthDate: "",
+          gender: "",
+          salary: ""
         }
       });
     }
@@ -172,6 +178,7 @@ export default class Customer extends Component {
         <div className="container">
           <div className="Table">
             <Table
+              loading={!data.length}
               className="-highlight"
               data={data}
               columns={this.columns}

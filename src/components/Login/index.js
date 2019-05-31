@@ -4,6 +4,11 @@ import Button from "react-bootstrap/Button";
 import { findUserByUsername } from "../../actions/user";
 
 export default class Login extends Component {
+  state = {
+    notFound: false,
+    wrong: false
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const elements = [...e.target.elements];
@@ -20,9 +25,9 @@ export default class Login extends Component {
   searchUser = async user => {
     const { setUser } = this.props;
     const response = await findUserByUsername(user.username);
-    if (!response.id) return alert("Usuário não encontrado");
+    if (!response.id) return this.setState({ notFound: true });
     if (response.id && user.password !== response.password)
-      return alert("Senha inválida");
+      return this.setState({ wrong: true });
     return setUser(response);
   };
 
@@ -43,6 +48,8 @@ export default class Login extends Component {
   };
 
   render() {
+    const { notFound, wrong } = this.state;
+
     return (
       <Form onSubmit={this.onSubmit}>
         <div className="col-md-4">
@@ -66,8 +73,19 @@ export default class Login extends Component {
               defaultValue=""
             />
           </div>
+          <div className="text-danger" hidden={!notFound}>
+            <p>Usuário não encontrado</p>
+          </div>
+          <div className="text-danger" hidden={!wrong}>
+            <p>Senha incorreta</p>
+          </div>
+
           <div style={{ padding: "5px 0px 0px 0px" }}>
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => this.setState({ notFound: false, wrong: false })}
+            >
               Entrar
             </Button>
           </div>

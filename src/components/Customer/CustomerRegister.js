@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import InputMask from "react-input-mask";
+import CurrencyInput from "react-currency-input";
 
 export class CustomerRegister extends Component {
   handleSubmit = e => {
@@ -58,37 +60,46 @@ export class CustomerRegister extends Component {
                 defaultValue={customer.name}
               />
               <Form.Label>C.P.F</Form.Label>
-              <Form.Control
-                type="text"
+              <InputMask
+                mask="999.999.999-99"
+                className="form-control"
                 placeholder="CPF do Cliente"
-                id="cpf"
                 defaultValue={customer.cpf}
+                type="text"
+                id="cpf"
               />
             </Form.Group>
             <Form.Row>
               <Form.Group as={Col} md="8">
                 <Form.Label>Nascimento</Form.Label>
-                <Form.Control
+                <InputMask
+                  mask="99/99/9999"
+                  className="form-control"
                   type="text"
                   placeholder="Data de Nascimento do Cliente"
-                  id="birthDate"
                   defaultValue={customer.birthDate}
+                  id="birthDate"
                 />
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label>Gênero</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Gênero do Cliente"
                   id="gender"
                   defaultValue={customer.gender}
-                />
+                  as="select"
+                >
+                  <option value="F">F</option>
+                  <option value="M">M</option>
+                  />
+                </Form.Control>
               </Form.Group>
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} md="3">
                 <Form.Label>Telefone</Form.Label>
-                <Form.Control
+                <InputMask
+                  mask="(99) 99999-9999"
+                  className="form-control"
                   type="text"
                   placeholder="Telefone"
                   id="phone"
@@ -116,9 +127,11 @@ export class CustomerRegister extends Component {
               />
             </Form.Group>
             <Form.Label>Salário</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Salário do Cliente"
+            <CurrencyInput
+              decimalSeparator=","
+              thousandSeparator="."
+              prefix="R$ "
+              className="form-control"
               id="salary"
               defaultValue={customer.salary}
             />

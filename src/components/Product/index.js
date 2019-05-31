@@ -165,6 +165,7 @@ export default class Product extends Component {
         <div className="container">
           <div className="Table">
             <Table
+              loading={!data.length}
               className="-highlight"
               data={data}
               columns={this.columns}

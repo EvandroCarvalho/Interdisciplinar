@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import InputMask from "react-input-mask";
 
 export class EmployeeRegister extends Component {
   handleSubmit = e => {
@@ -58,16 +59,20 @@ export class EmployeeRegister extends Component {
                 defaultValue={employee.name}
               />
               <Form.Label>C.P.F</Form.Label>
-              <Form.Control
-                type="text"
+              <InputMask
+                mask="999.999.999-99"
+                className="form-control"
                 placeholder="CPF do Funcionário"
-                id="cpf"
                 defaultValue={employee.cpf}
+                type="text"
+                id="cpf"
               />
               <Form.Row>
                 <Form.Group as={Col} md="3">
                   <Form.Label>Telefone</Form.Label>
-                  <Form.Control
+                  <InputMask
+                    mask="(99) 99999-9999"
+                    className="form-control"
                     type="text"
                     placeholder="Telefone"
                     id="phone"
