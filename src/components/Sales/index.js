@@ -285,7 +285,7 @@ export default class Sales extends Component {
                       state: {
                         employeeId,
                         customerId: customer.id,
-                        username: user.username
+                        user
                       }
                     }}
                   >
