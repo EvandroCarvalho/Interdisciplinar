@@ -27,27 +27,33 @@ export default class Sales extends Component {
     isCPF: false,
     isCNPJ: false,
     customerNotFound: false,
-    employeeNotFound: false
+    employeeNotFound: false,
+    findEmployee: false
   };
 
   searchEmployeeById = async id => {
     const { name: employeeName } = await findEmployeeById(id);
     if (employeeName) {
-      this.setState({ employeeName, employeeNotFound: false });
+      this.setState({
+        employeeName,
+        employeeNotFound: false,
+        findEmployee: true
+      });
     } else {
-      this.setState({ employeeNotFound: true });
+      this.setState({ employeeNotFound: true, findEmployee: false });
     }
   };
 
   searchEmployeeByName = async name => {
     const response = await findEmployeeByName(name);
     if (response.status === 404 || response.status === 400) {
-      this.setState({ employeeNotFound: true });
+      this.setState({ employeeNotFound: true, findEmployee: false });
     } else {
       this.setState({
         employeeId: response[0].id,
         employeeName: response[0].name,
-        employeeNotFound: false
+        employeeNotFound: false,
+        findEmployee: true
       });
     }
   };
@@ -102,7 +108,8 @@ export default class Sales extends Component {
       cnpjMask,
       cpfMask,
       inputRadioPlaceHolder,
-      employeeNotFound
+      employeeNotFound,
+      findEmployee
     } = this.state;
 
     return (
@@ -227,7 +234,7 @@ export default class Sales extends Component {
           </div>
           <div>
             <div className="col-md-8" hidden={!findCustomer}>
-              <Form className="Form">
+              <Form>
                 <Form.Group>
                   <Form.Label>Nome</Form.Label>
                   <Form.Control
@@ -289,7 +296,11 @@ export default class Sales extends Component {
                       }
                     }}
                   >
-                    <Button variant="primary" type="submit">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      hidden={!findCustomer || !findEmployee}
+                    >
                       Confirmar
                     </Button>
                   </Link>

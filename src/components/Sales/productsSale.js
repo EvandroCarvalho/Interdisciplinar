@@ -32,7 +32,8 @@ export default class ProductsSale extends Component {
     invoice: 0,
     showModal: false,
     notFount: false,
-    user: {}
+    user: {},
+    error: false
   };
 
   componentDidMount() {
@@ -177,6 +178,10 @@ export default class ProductsSale extends Component {
   finishOrder = async data => {
     let invoiceNumber = Math.floor(Math.random() * 1000 + 1);
 
+    if (!data.length) {
+      return this.setState({ msg: "Lista de produtos vazia!", error: true });
+    }
+
     await this.setState({
       data: [data.map(item => (item.invoice = invoiceNumber))],
       invoice: invoiceNumber
@@ -193,8 +198,11 @@ export default class ProductsSale extends Component {
         itemId: "",
         itemName: "",
         total: 0,
-        showModal: true
+        showModal: true,
+        error: false
       });
+    } else {
+      this.setState({ msg: "Erro ao concluir venda", error: true });
     }
   };
 
@@ -206,7 +214,9 @@ export default class ProductsSale extends Component {
       total,
       showModal,
       invoice,
-      notFount
+      notFount,
+      msg,
+      error
     } = this.state;
     return (
       <Fragment>
@@ -286,6 +296,9 @@ export default class ProductsSale extends Component {
               />
             </InputGroup>
           </div>
+        </div>
+        <div hidden={!error} className="CustomerNotFound">
+          <p className="text-danger">{msg}</p>
         </div>
         <div className="mt-3 col-md-4">
           <Button onClick={() => this.finishOrder(data)}>
