@@ -56,7 +56,7 @@ export default class ProductsSale extends Component {
   formatCellActions = row => (
     <div style={{ textAlign: "center" }}>
       <button
-        className="btn"
+        className="btn buttonAction"
         title="Excluir"
         onClick={() => {
           this.removeItem(row);
@@ -229,14 +229,16 @@ export default class ProductsSale extends Component {
                 value={itemName}
                 onChange={e => this.handleItemName(e.target.value)}
               />
-              <InputGroup.Append>
-                <Button
-                  variant="outline-primary"
+              <div className="input-group-append" disabled={true}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  id="findItemByName"
                   onClick={() => this.findItemByName(itemName)}
                 >
                   Consultar
-                </Button>
-              </InputGroup.Append>
+                </button>
+              </div>
             </InputGroup>
           </div>
           <div>
@@ -248,14 +250,16 @@ export default class ProductsSale extends Component {
                 min={1}
                 onChange={e => this.handleItemId(e.target.value)}
               />
-              <InputGroup.Append>
-                <Button
-                  variant="outline-primary"
+              <div className="input-group-append">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  id="findItemById"
                   onClick={() => this.findItemById(itemId)}
                 >
                   Consultar
-                </Button>
-              </InputGroup.Append>
+                </button>
+              </div>
             </InputGroup>
             <div className="text-danger mb-2 col-md-4" hidden={!notFount}>
               <p>Produto não encontrado</p>

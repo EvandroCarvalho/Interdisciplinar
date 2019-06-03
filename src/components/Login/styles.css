@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form {
+  border: 3px solid #f1f1f1;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.input[type="text"],
+.input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #ee4c2c !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.button {
+  padding: 14px 20px !important;
+  margin: 8px 0 !important;
+  width: 100% !important;
+}
+
+button:hover {
+  opacity: 0.8 !important;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.senha {
+  float: right;
+  padding-top: 16px;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 0;
+}
+
+img.logo {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 300px) {
+  .span.senha {
+    display: block;
+    float: none;
+  }
+
+  .btn-cancelar {
+    width: 100%;
+  }
+}

@@ -112,14 +112,14 @@ export default class Customer extends Component {
     return (
       <div>
         <button
-          className="btn"
+          className="btn buttonAction"
           title="Editar"
           onClick={() => this.openModalAddOrEdit(row)}
         >
           <img src={Edit} alt="img" height="18" width="18" />
         </button>
         <button
-          className="btn"
+          className="btn buttonAction"
           title="Excluir"
           onClick={() => this.openModalDelete(row)}
         >

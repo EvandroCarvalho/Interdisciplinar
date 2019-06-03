@@ -1,3 +1,7 @@
 .Table {
   padding: 10px;
 }
+
+.buttonAction {
+  background-color: transparent !important;
+}

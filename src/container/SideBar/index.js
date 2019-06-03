@@ -19,6 +19,7 @@ import employeeIcon from "../../assets/img/employee.png";
 import homeIcon from "../../assets/img/home.png";
 import exitIcon from "../../assets/img/exit.png";
 import lineMenu from "../../assets/img/line-menu.png";
+import logo from "../../assets/img/logo_gestao.png";
 import { Link } from "react-router-dom";
 import Routes from "../../routes/routes";
 import "./styles.css";
@@ -109,12 +110,17 @@ class SideBar extends React.Component {
             </Link>
           ))}
         </List>
+        <img src={logo} alt="Logomarca Gestão" height="200" width="200" />
       </div>
     );
 
     return (
       <div className={classes.root}>
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar
+          position="fixed"
+          className={classes.appBar}
+          style={{ background: "#ee4c2c" }}
+        >
           <Toolbar>
             <IconButton
               color="secondary"

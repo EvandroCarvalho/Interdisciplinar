@@ -35,3 +35,7 @@
   justify-content: flex-end;
   margin-left: 1px;
 }
+
+.buttonAction {
+  background-color: transparent !important;
+}

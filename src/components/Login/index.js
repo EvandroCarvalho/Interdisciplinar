@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import logo from "../../assets/img/logo_gestao.png";
 import { findUserByUsername } from "../../actions/user";
+import "./styles.css";
 
 export default class Login extends Component {
   state = {
@@ -42,37 +44,48 @@ export default class Login extends Component {
     const { notFound, wrong } = this.state;
 
     return (
-      <Form onSubmit={this.onSubmit}>
-        <div className="col-md-4">
-          <div style={{ padding: "0px 0px 5px 0px" }}>
-            <Form.Label>Usuário</Form.Label>
+      <>
+        <Form className="form" onSubmit={this.onSubmit}>
+          <div className="container">
+            <div className="imgcontainer">
+              <img src={logo} alt="Logomarca Gestão" className="logo" />
+            </div>
+
+            <Form.Label>
+              <b>Nome do usuário</b>
+            </Form.Label>
             <Form.Control
+              className="input"
+              required
               type="text"
               placeholder="usuário"
               size="md"
               id="username"
               defaultValue=""
             />
-          </div>
-          <div style={{ padding: "5px 0px 5px 0px" }}>
-            <Form.Label>Senha</Form.Label>
+
+            <Form.Label>
+              <b>Senha</b>
+            </Form.Label>
             <Form.Control
+              className="input"
+              required
               type="password"
               placeholder="senha"
               size="md"
               id="password"
               defaultValue=""
             />
-          </div>
-          <div className="text-danger" hidden={!notFound}>
-            <p>Usuário não encontrado</p>
-          </div>
-          <div className="text-danger" hidden={!wrong}>
-            <p>Senha incorreta</p>
-          </div>
 
-          <div style={{ padding: "5px 0px 0px 0px" }}>
+            <div className="text-danger" hidden={!notFound}>
+              <p>Usuário não encontrado</p>
+            </div>
+            <div className="text-danger" hidden={!wrong}>
+              <p>Senha incorreta</p>
+            </div>
+
             <Button
+              className="button"
               variant="primary"
               type="submit"
               onClick={() => this.setState({ notFound: false, wrong: false })}
@@ -80,8 +93,8 @@ export default class Login extends Component {
               Entrar
             </Button>
           </div>
-        </div>
-      </Form>
+        </Form>
+      </>
     );
   }
 }
