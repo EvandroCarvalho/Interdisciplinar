@@ -110,7 +110,13 @@ class SideBar extends React.Component {
             </Link>
           ))}
         </List>
-        <img src={logo} alt="Logomarca Gestão" height="200" width="200" />
+        <img
+          className="imgLogo"
+          src={logo}
+          alt="Logomarca Gestão"
+          height="200"
+          width="200"
+        />
       </div>
     );
 
