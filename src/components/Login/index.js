@@ -8,7 +8,8 @@ import "./styles.css";
 export default class Login extends Component {
   state = {
     notFound: false,
-    wrong: false
+    wrong: false,
+    notWork: false
   };
 
   onSubmit = e => {
@@ -27,6 +28,8 @@ export default class Login extends Component {
   searchUser = async user => {
     const { setUser } = this.props;
     const response = await findUserByUsername(user.username);
+
+    if (!response || response === "") return this.setState({ notWork: true });
     if (!response.id) return this.setState({ notFound: true });
     if (response.id && user.password !== response.password)
       return this.setState({ wrong: true });
@@ -41,7 +44,7 @@ export default class Login extends Component {
   };
 
   render() {
-    const { notFound, wrong } = this.state;
+    const { notFound, wrong, notWork } = this.state;
 
     return (
       <>
@@ -82,6 +85,9 @@ export default class Login extends Component {
             </div>
             <div className="text-danger" hidden={!wrong}>
               <p>Senha incorreta</p>
+            </div>
+            <div className="text-danger" hidden={!notWork}>
+              <p>Ops! Tivemos um erro, favor tentar novamente mais tarde.</p>
             </div>
 
             <Button

@@ -122,28 +122,28 @@ class SideBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar
-          position="fixed"
-          className={classes.appBar}
-          style={{ background: "#ee4c2c" }}
-        >
-          <Toolbar>
-            <IconButton
-              color="secondary"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.menuButton}
+        {user && (
+          <>
+            <AppBar
+              position="fixed"
+              className={classes.appBar}
+              style={{ background: "#ee4c2c" }}
             >
-              <img src={lineMenu} width="20" height="20" alt="img" />
-            </IconButton>
-            <Typography variant="h5" color="inherit" noWrap>
-              Sistema de Gestão de Vendas
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <nav className={classes.drawer}>
-          {user && (
-            <>
+              <Toolbar>
+                <IconButton
+                  color="secondary"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <img src={lineMenu} width="20" height="20" alt="img" />
+                </IconButton>
+                <Typography variant="h5" color="inherit" noWrap>
+                  Sistema de Gestão de Vendas
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <nav className={classes.drawer}>
               <Hidden smUp implementation="css">
                 <Drawer
                   container={this.props.container}
@@ -169,9 +169,9 @@ class SideBar extends React.Component {
                   {drawer}
                 </Drawer>
               </Hidden>
-            </>
-          )}
-        </nav>
+            </nav>
+          </>
+        )}
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {!user ? <Login setUser={this.setUser} /> : <Routes user={user} />}

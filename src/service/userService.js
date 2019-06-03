@@ -4,7 +4,10 @@ export const findUserByUsernameService = async username => {
   let response = "";
   await fetch(url + "/?username=" + username)
     .then(resp => resp.json())
-    .then(body => (response = body));
+    .then(body => (response = body))
+    .catch(() =>
+      alert("Ops! Tivemos um problema. Por favor, tente novamente mais tarde")
+    );
   return response;
 };
 

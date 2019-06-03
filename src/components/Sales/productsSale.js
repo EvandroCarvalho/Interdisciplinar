@@ -114,23 +114,17 @@ export default class ProductsSale extends Component {
     this.setState({ itemId });
   };
 
-  saveItem = async ({
-    tableColumns,
-    itemId,
-    customer,
-    employee,
-    itemName,
-    user
-  }) => {
+  saveItem = async ({ tableColumns, itemId, customer, employee, user }) => {
     let invoice = 123;
     tableColumns.discount = 0;
     tableColumns.amount = 1;
     tableColumns = {
       ...tableColumns,
-      itemId,
+      item: {
+        id: itemId
+      },
       customer,
       employee,
-      itemName,
       invoice,
       user
     };
