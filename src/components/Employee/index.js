@@ -172,7 +172,7 @@ export default class Employee extends Component {
         <div className="container">
           <div className="Table">
             <Table
-              loading={!data.length}
+              loading={data && !data.length}
               className="-highlight"
               data={data}
               columns={this.columns}
@@ -204,7 +204,6 @@ export default class Employee extends Component {
             <Modal.Body>
               <div className="container">
                 <p>
-                  {" "}
                   Deseja realmente excluir este funcionário?
                   <br />
                   Esta ação não poderá ser desfeita!

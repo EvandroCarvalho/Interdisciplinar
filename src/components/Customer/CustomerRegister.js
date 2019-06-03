@@ -49,12 +49,14 @@ export class CustomerRegister extends Component {
   checkedCPF = checked => {
     this.setState({
       isCPF: checked,
+      isCNPJ: !checked,
       inputRadioPlaceHolder: "C.P.F. do cliente"
     });
   };
 
   checkedCNPJ = checked => {
     this.setState({
+      isCPF: !checked,
       isCNPJ: checked,
       inputRadioPlaceHolder: "C.N.P.J. do cliente"
     });
