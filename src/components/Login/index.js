@@ -47,8 +47,8 @@ export default class Login extends Component {
     const { notFound, wrong, notWork } = this.state;
 
     return (
-      <>
-        <Form className="form" onSubmit={this.onSubmit}>
+      <div className="row justify-content-md-center">
+        <Form className="col-md-4 form" onSubmit={this.onSubmit}>
           <div className="container">
             <div className="imgcontainer">
               <img src={logo} alt="Logomarca Gestão" className="logo" />
@@ -100,7 +100,7 @@ export default class Login extends Component {
             </Button>
           </div>
         </Form>
-      </>
+      </div>
     );
   }
 }
