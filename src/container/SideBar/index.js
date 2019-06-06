@@ -91,12 +91,13 @@ class SideBar extends React.Component {
         <List>
           {this.state.options.map((text, index) => (
             <Link
+              // id={text}
               className="link"
               to={text === "sair" || text === "home" ? "/" : `/${text}`}
               key={index}
               onClick={text === "sair" ? () => this.setUser(null) : () => {}}
             >
-              <ListItem button key={text}>
+              <ListItem button key={text} id={text}>
                 <img
                   src={this.state.icon[index]}
                   alt="img"
