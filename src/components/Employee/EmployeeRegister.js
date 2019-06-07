@@ -100,10 +100,10 @@ export class EmployeeRegister extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="secondary" onClick={close}>
+            <Button variant="secondary" id="btn-cancel" onClick={close}>
               Cancelar
             </Button>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" id="btn-salve">
               Salvar
             </Button>
           </Modal.Footer>

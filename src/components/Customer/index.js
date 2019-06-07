@@ -198,6 +198,7 @@ export default class Customer extends Component {
                 style={{ float: "right" }}
                 variant="primary"
                 type="button"
+                id="new-customer"
                 onClick={() => this.openModalAddOrEdit()}
               >
                 Novo

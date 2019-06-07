@@ -161,6 +161,7 @@ export default class Employee extends Component {
                 style={{ float: "right" }}
                 variant="primary"
                 type="button"
+                id="new-employee"
                 onClick={() => this.openModalAddOrEdit()}
               >
                 Novo

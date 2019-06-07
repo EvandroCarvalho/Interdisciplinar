@@ -167,6 +167,7 @@ export default class Product extends Component {
                 style={{ float: "right" }}
                 variant="primary"
                 type="button"
+                id="new-product"
                 onClick={() => this.openModalAddOrEdit()}
               >
                 Novo

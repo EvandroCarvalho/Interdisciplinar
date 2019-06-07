@@ -91,7 +91,6 @@ class SideBar extends React.Component {
         <List>
           {this.state.options.map((text, index) => (
             <Link
-              // id={text}
               className="link"
               to={text === "sair" || text === "home" ? "/" : `/${text}`}
               key={index}
